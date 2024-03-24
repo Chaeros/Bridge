@@ -31,14 +31,15 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("insert into freeboard		");
-		sql.append("(title, content)			");
-		sql.append("values ( ?, ? ) 			");
+		sql.append("(title, content, writer)	");
+		sql.append("values ( ?, ?, ? ) 			");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		
 		try(con;pstmt){
 			int index = 0;
 			pstmt.setString(++index, board.getTitle());
 			pstmt.setString(++index, board.getContent());
+			pstmt.setString(++index, board.getWriter());
 			return pstmt.executeUpdate();
 		}
 	}
@@ -96,7 +97,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 						rs.getString("content"),
 						rs.getString("writer"),
 						rs.getInt("hit"),
-						rs.getString("writeDate")
+						rs.getString("write_Date")
 						);
 			}
 			return null;
@@ -120,7 +121,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 						rs.getString("content"),
 						rs.getString("writer"),
 						rs.getInt("hit"),
-						rs.getString("writeDate")
+						rs.getString("write_Date")
 						));
 			}
 			return list;

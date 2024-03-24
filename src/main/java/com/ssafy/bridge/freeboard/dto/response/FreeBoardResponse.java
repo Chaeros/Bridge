@@ -16,7 +16,31 @@ public class FreeBoardResponse {
 		this.hit = hit;
 		this.writeDate = writeDate;
 	}
-//dd
+	
+	public int getNo() {
+		return no;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public int getHit() {
+		return hit;
+	}
+
+	public String getWriteDate() {
+		return writeDate;
+	}
+
 	@Override
 	public String toString() {
 		return "FreeBoardResponse [no=" + no + ", title=" + title + ", content=" + content + ", writer=" + writer

@@ -1,0 +1,41 @@
+@charset "EUC-KR";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    margin: 0;
+    padding: 0;
+    border-bottom: 3px solid;
+    height: 84px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-position{
+    width: 80%;
+    /* margin: 0 auto; */
+}
+
+.header-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content > .title{
+    font-size: 54px;
+    color: blue;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.header-content > .nav > a{
+    font-size: 22px;
+    font-weight: bold;
+    margin: auto 30px;
+}

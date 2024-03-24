@@ -55,13 +55,13 @@ public class FreeBoardController extends HttpServlet {
 	}
 
 	private void detailFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		freeBoardService.searchByNoFreeBoard(Integer.parseInt(request.getParameter("no")));
+		request.setAttribute("board", freeBoardService.searchByNoFreeBoard(Integer.parseInt(request.getParameter("no"))));
 		request.getRequestDispatcher("/freeboard/detail.jsp").forward(request, response);
 	}
 
 	private void listFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("list", freeBoardService.displayFreeBoardList());
-		response.sendRedirect("/bridge/freeboard?action=list");
+		request.setAttribute("boards", freeBoardService.displayFreeBoardList());
+		request.getRequestDispatcher("/freeboard/list.jsp").forward(request, response);
 	}
 
 	private void searchFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -75,6 +75,7 @@ public class FreeBoardController extends HttpServlet {
 	}
 
 	private void modifyFormFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setAttribute("board", freeBoardService.searchByNoFreeBoard(Integer.parseInt(request.getParameter("no"))));
 		request.getRequestDispatcher("/freeboard/modify.jsp").forward(request, response);
 	}
 
@@ -94,7 +95,8 @@ public class FreeBoardController extends HttpServlet {
 	private void addFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		freeBoardService.addFreeBoard(new FreeBoardAddRequest(
 				request.getParameter("title"),
-				request.getParameter("content")
+				request.getParameter("content"),
+				request.getParameter("writer")
 				));
 		response.sendRedirect("/bridge/freeboard?action=list");
 	}

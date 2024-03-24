@@ -17,12 +17,14 @@ nav a {
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp"/>
 	<nav>
 		<h1>메인 페이지 입니다.</h1>
 	</nav>
-	<a href="${pageContext.request.contextPath}/product?action=registForm">게시물 등록 페이지</a>
-	<a href="${pageContext.request.contextPath}/product?action=list">게시물 목록 페이지</a>
+	<a href="${pageContext.request.contextPath}/freeboard?action=addForm">게시물 등록 페이지</a>
+	<a href="${pageContext.request.contextPath}/freeboard?action=list">게시물 목록 페이지</a>
 	<br>
 	<br>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>
