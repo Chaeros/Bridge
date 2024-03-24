@@ -15,11 +15,11 @@ import com.ssafy.bridge.util.DBUtil;
 public class FreeBoardDaoImpl implements FreeBoardDao{
 
 	private static FreeBoardDao freeBoardDao;
-	private DBUtil util;
+	private DBUtil dbUtil;
 	private FreeBoardDaoImpl() {
-		util = DBUtil.getInstance();
+		dbUtil = DBUtil.getInstance();
 	}
-	public FreeBoardDao getInstance() {
+	public static FreeBoardDao getInstance() {
 		if ( freeBoardDao == null ) {
 			freeBoardDao = new FreeBoardDaoImpl();
 		}
@@ -28,7 +28,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	
 	@Override
 	public int insertFreeBoard(FreeBoardAddRequest board) throws SQLException {
-		Connection con = util.getConnection();
+		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("insert into freeboard		");
 		sql.append("(title, content)			");
@@ -45,7 +45,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	
 	@Override
 	public int updateFreeBoard(FreeBoardModifyRequest board) throws SQLException {
-		Connection con = util.getConnection();
+		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("update freeboard				");
 		sql.append("   set title = ? , content = ?	");
@@ -63,7 +63,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	
 	@Override
 	public int deleteFreeBoard(int no) throws SQLException {
-		Connection con = util.getConnection();
+		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("delete from freeboard		");
 		sql.append(" where no = ? 				");
@@ -78,7 +78,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	
 	@Override
 	public FreeBoardResponse selectByNoFreeBoard(int no) throws SQLException {
-		Connection con = util.getConnection();
+		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select *			");
 		sql.append("  from freeboard	");
@@ -104,7 +104,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	}
 	@Override
 	public List<FreeBoardResponse> selectFreeBoardList() throws SQLException {
-		Connection con = util.getConnection();
+		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select *			");
 		sql.append("  from freeboard	");

@@ -1,41 +1,47 @@
 package com.ssafy.bridge.freeboard.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import com.ssafy.bridge.freeboard.dao.FreeBoardDao;
+import com.ssafy.bridge.freeboard.dao.FreeBoardDaoImpl;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
 import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 
 public class FreeBoardServiceImpl implements FreeBoardService{
 
-	@Override
-	public void addFreeBoard(FreeBoardAddRequest board) {
-		// TODO Auto-generated method stub
-		
+	private static FreeBoardService freeBoardService;
+	private FreeBoardDao freeBoardDao;
+	private FreeBoardServiceImpl() {
+		freeBoardDao = FreeBoardDaoImpl.getInstance();
 	}
-
-	@Override
-	public void modifyFreeBoard(FreeBoardModifyRequest board) {
-		// TODO Auto-generated method stub
-		
+	public static FreeBoardService getInstance() {
+		if ( freeBoardService == null ) {
+			freeBoardService = new FreeBoardServiceImpl();
+		}
+		return freeBoardService;
 	}
-
+	
 	@Override
-	public void removeFreeBoard(int no) {
-		// TODO Auto-generated method stub
-		
+	public int addFreeBoard(FreeBoardAddRequest board) throws SQLException {
+		return freeBoardDao.insertFreeBoard(board);
 	}
-
 	@Override
-	public FreeBoardResponse searchByNoFreeBoard(int no) {
-		// TODO Auto-generated method stub
-		return null;
+	public int modifyFreeBoard(FreeBoardModifyRequest board) throws SQLException {
+		return freeBoardDao.updateFreeBoard(board);
 	}
-
 	@Override
-	public List<FreeBoardResponse> displayFreeBoardList() {
-		// TODO Auto-generated method stub
-		return null;
+	public int removeFreeBoard(int no) throws SQLException {
+		return freeBoardDao.deleteFreeBoard(no);
+	}
+	@Override
+	public FreeBoardResponse searchByNoFreeBoard(int no) throws SQLException {
+		return freeBoardDao.selectByNoFreeBoard(no);
+	}
+	@Override
+	public List<FreeBoardResponse> displayFreeBoardList() throws SQLException {
+		return freeBoardDao.selectFreeBoardList();
 	}
 
 }

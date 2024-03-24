@@ -1,5 +1,6 @@
 package com.ssafy.bridge.freeboard.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
@@ -15,9 +16,9 @@ public interface FreeBoardService {
 	 * display : 출력
 	 */
 	
-	public void addFreeBoard(FreeBoardAddRequest board);
-	public void modifyFreeBoard(FreeBoardModifyRequest board);
-	public void removeFreeBoard(int no);
-	public FreeBoardResponse searchByNoFreeBoard(int no);
-	public List<FreeBoardResponse> displayFreeBoardList();
+	public int addFreeBoard(FreeBoardAddRequest board) throws SQLException;
+	public int modifyFreeBoard(FreeBoardModifyRequest board) throws SQLException;
+	public int removeFreeBoard(int no) throws SQLException;
+	public FreeBoardResponse searchByNoFreeBoard(int no) throws SQLException;
+	public List<FreeBoardResponse> displayFreeBoardList() throws SQLException;
 }
