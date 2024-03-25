@@ -1,0 +1,60 @@
+@charset "EUC-KR";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    display: flex;
+}
+
+.body img {
+    width: auto;
+    max-width: 1432px;
+}
+
+.left-content {
+	flex: 1;
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+    margin: auto 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 100px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.input-content div > input ,button{
+    margin : 5px 40px;
+    width: 400px;
+    height: 60px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.id{
+    display: flex;
+    flex-direction: column;
+}
+
+.id>label{
+    margin-left: 40px;
+}
+
+.pass{
+    display: flex;
+    flex-direction: column;
+}
+
+.pass>label{
+    margin-left: 40px;
+}
