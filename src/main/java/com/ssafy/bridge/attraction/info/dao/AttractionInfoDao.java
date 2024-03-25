@@ -13,5 +13,6 @@ public interface AttractionInfoDao {
 	 * delete : 삭제
 	 * select : 조회
 	 */
+	public AttractionInfoResponse selectAttractionInfo(int contentId) throws SQLException;
 	public List<AttractionInfoResponse> selectAttractionInfoList() throws SQLException;
 }
