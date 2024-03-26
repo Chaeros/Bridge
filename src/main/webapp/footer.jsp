@@ -2,6 +2,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <head>
-	<link rel="stylesheet" href="./css/footer.css" />
+	<link rel="stylesheet" href="./css/common/footer.css" />
 </head>
 <footer class="footer"></footer>

@@ -43,9 +43,8 @@ public class AttractionInfoController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
+	
 	private void searchAttractionInfo(HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, SQLException {
 		attractionInfoService.searchAttractionInfo(Integer.parseInt(request.getParameter("contentId")));
 	}
