@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <head>
-	<link rel="stylesheet" href="./css/header.css" />
+	<link rel="stylesheet" href="./css/common/header.css" />
 </head>
 <header class="header">
  	<div class="header-position">
