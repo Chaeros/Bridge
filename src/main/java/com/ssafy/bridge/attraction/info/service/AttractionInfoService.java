@@ -14,5 +14,6 @@ public interface AttractionInfoService {
 	 * display : 출력
 	 */
 	
+	public AttractionInfoResponse searchAttractionInfo(int contentId) throws SQLException;
 	public List<AttractionInfoResponse> displayFreeBoardList() throws SQLException;
 }
