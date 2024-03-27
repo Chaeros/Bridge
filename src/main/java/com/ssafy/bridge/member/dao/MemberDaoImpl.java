@@ -150,4 +150,22 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 
+	@Override
+	public boolean isDuplicateById(String id) throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("select id from member ");
+		sql.append("where id = ?");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+
+		try (con; pstmt) {
+			int index = 0;
+			pstmt.setString(++index, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
