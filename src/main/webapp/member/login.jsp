@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,17 +20,17 @@
 				action="${pageContext.request.contextPath}/member">
 				<input hidden="true" name="action" value="login">
 				<div class="id">
-					<label for="id">���̵�</label> <input id="id" name="id" type="text" />
+					<label for="id">아이디</label> <input id="id" name="id" type="text" />
 				</div>
 				<div class="pass">
-					<label for="pass">��й�ȣ</label> <input id="pass" name="password"
+					<label for="pass">비밀번호</label> <input id="pass" name="password"
 						type="text" />
 				</div>
 				<div>
-					<button id="login_btn" type="submit">�α���</button>
+					<button id="login_btn" type="submit">로그인</button>
 				</div>
 			</form>
-			<button id="signup_btn" type="button">ȸ������</button>
+			<button id="signup_btn" type="button">회원가입</button>
 		</div>
 	</div>
 	<script src="../js/login.js" type="text/javascript"></script>
