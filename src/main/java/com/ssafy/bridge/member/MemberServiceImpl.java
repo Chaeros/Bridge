@@ -28,7 +28,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int addMember(MemberAddRequest member) throws SQLException {
+	public int addMember(MemberAddRequest member) throws Exception {
+		if(isDuplicateByNickName(member.getNickName())) {
+			throw new Exception();
+		}
 		return memberDao.insertMember(member);
 	}
 
