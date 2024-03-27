@@ -1,7 +1,6 @@
 package com.ssafy.bridge.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import com.ssafy.bridge.member.MemberService;
 import com.ssafy.bridge.member.MemberServiceImpl;
@@ -9,6 +8,7 @@ import com.ssafy.bridge.member.dto.request.MemberAddRequest;
 import com.ssafy.bridge.member.dto.request.MemberDeleteRequest;
 import com.ssafy.bridge.member.dto.request.MemberLoginRequest;
 import com.ssafy.bridge.member.dto.request.MemberModifyRequest;
+import com.ssafy.bridge.member.dto.response.MemberLoginResponse;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,11 +20,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/member")
 public class MemberController extends HttpServlet {
 
-	private MemberService memberService;
-
-	private MemberController() {
-		memberService = MemberServiceImpl.getInstance();
-	}
+	private MemberService memberService = MemberServiceImpl.getInstance();;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -48,8 +44,14 @@ public class MemberController extends HttpServlet {
 			case "modify":
 				modifyMember(request, response);
 				break;
+			case "modifyForm":
+				modifyFormMember(request, response);
+				break;
 			case "remove":
 				removeMember(request, response);
+				break;
+			case "removeForm":
+				removeFormMember(request, response);
 				break;
 			}
 		} catch (Exception e) {
@@ -57,62 +59,65 @@ public class MemberController extends HttpServlet {
 		}
 	}
 
-	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		memberService.addMember(new MemberAddRequest(
-				request.getParameter("id"), 
-				request.getParameter("password"),
-				request.getParameter("name"), 
-				request.getParameter("nickName"), 
-				request.getParameter("region"),
-				request.getParameter("email")
-				));
+	private void modifyFormMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		request.setAttribute("id", member);
 
-		response.sendRedirect("/bridge/member/login.jsp");
+		request.getRequestDispatcher("/member/remove.jsp").forward(request, response);
+
+	}
+
+	private void removeFormMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.getRequestDispatcher("/member/remove.jsp").forward(request, response);
+
+	}
+
+	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		memberService.addMember(new MemberAddRequest(request.getParameter("id"), request.getParameter("password"),
+				request.getParameter("name"), request.getParameter("nickName"), request.getParameter("region"),
+				request.getParameter("email")));
+
+		response.sendRedirect(request.getContextPath() + "/member/login.jsp");
 	}
 
 	private void addFormMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.getRequestDispatcher("/member/signup.jsp");
+		request.getRequestDispatcher("/member/signup.jsp").forward(request, response);
 	}
 
 	private void searchMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("member", memberService.searchMember(
-				request.getParameter("id")
-				));
-		request.getRequestDispatcher("/member/myPage.jsp");
+		MemberLoginResponse member = (MemberLoginResponse) request.getSession().getAttribute("member");
+
+		request.setAttribute("member", memberService.searchMember(member.getId()));
+		request.getRequestDispatcher("/member/myPage.jsp").forward(request, response);
 	}
 
 	private void loginMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 
 		session.setAttribute("member", memberService
-				.loginMember(new MemberLoginRequest(
-						request.getParameter("id"), 
-						request.getParameter("password")
-						)));
+				.loginMember(new MemberLoginRequest(request.getParameter("id"), request.getParameter("password"))));
 
-		response.sendRedirect("/bridge/boardindex.jsp");
+		response.sendRedirect(request.getContextPath() + "/boardindex.jsp");
 
 	}
 
 	private void modifyMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		memberService.modifyMember(new MemberModifyRequest(
-				request.getParameter("id"), 
-				request.getParameter("password"),
-				request.getParameter("name"), 
-				request.getParameter("nickName"), 
-				request.getParameter("region"),
-				request.getParameter("email")
-				));
-		response.sendRedirect("/bridge/member?action=modify");
+		HttpSession session = request.getSession();
+		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+
+		memberService.modifyMember(new MemberModifyRequest(member.getId(), request.getParameter("password"),
+				request.getParameter("name"), request.getParameter("nickName"), request.getParameter("region"),
+				request.getParameter("email")));
+		response.sendRedirect(request.getContextPath() + "/member?action=modify");
 	}
 
 	private void removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		memberService
-				.removeMember(new MemberDeleteRequest(
-						request.getParameter("id"), 
-						request.getParameter("password")
-						));
-		response.sendRedirect("/bridge/boardindex.jsp");
+		HttpSession session = request.getSession();
+		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+
+		memberService.removeMember(new MemberDeleteRequest(member.getId(), request.getParameter("password")));
+		response.sendRedirect(request.getContextPath() + "/boardindex.jsp");
 
 	}
 }

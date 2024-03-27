@@ -20,16 +20,16 @@ public interface MemberService {
 	 * login: 로그인
 	 */
 	
-	int addMember(MemberAddRequest member) throws SQLException;
+	int addMember(MemberAddRequest member) throws Exception;
 
-	MemberResponse searchMember(String id) throws SQLException;
+	MemberResponse searchMember(String id) throws Exception;
 	
-	boolean isDuplicateByNickName(String nickName) throws SQLException;
+	boolean isDuplicateByNickName(String nickName) throws Exception;
 
-	MemberLoginResponse loginMember(MemberLoginRequest member) throws SQLException;
+	MemberLoginResponse loginMember(MemberLoginRequest member) throws Exception;
 
 	int modifyMember(MemberModifyRequest member) throws Exception;
 
-	int removeMember(MemberDeleteRequest member) throws SQLException;
+	int removeMember(MemberDeleteRequest member) throws Exception;
 	
 }
