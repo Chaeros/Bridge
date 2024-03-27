@@ -31,7 +31,7 @@ main {
 	height: 70px;
 }
 
-.form-group:nth-child(4){
+.form-group:nth-child(4) {
 	height: 250px;
 }
 
@@ -45,8 +45,14 @@ main {
 	font-size: 20px;
 }
 
+.form-btn {
+	display: flex;
+	justify-content: flex-end;
+}
+
 #regist {
-	height: 40px;
-	width: 70px;
-	margin: 7px 0;
+	height: 35px;
+	width: 100px;
+	margin: 0 20px;
+	
 }

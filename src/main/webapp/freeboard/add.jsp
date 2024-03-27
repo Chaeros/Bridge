@@ -47,8 +47,10 @@ nav a {
 				<textarea class="form-control" id="content" name="content" rows="7"></textarea>
 			</div>
 
-			<button type="submit" id="regist">등록</button>
-			<a href="${pageContext.request.contextPath}/boardindex.jsp"}>취소</a>
+			<div class="form-btn">
+				<button type="submit" id="regist">등록</button>
+				<a href="${pageContext.request.contextPath}/boardindex.jsp"}>취소</a>
+			</div>
 		</form>
 	</main>
 	<jsp:include page="/footer.jsp" />
