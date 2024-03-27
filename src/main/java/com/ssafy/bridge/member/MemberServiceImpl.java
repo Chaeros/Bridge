@@ -29,8 +29,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int addMember(MemberAddRequest member) throws Exception {
-		if(isDuplicateByNickName(member.getNickName())) {
-			throw new Exception();
+		if (isDuplicateByNickName(member.getNickName()) || isDuplicateById(member.getId())) {
+			return -1;
 		}
 		return memberDao.insertMember(member);
 	}
@@ -52,15 +52,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int modifyMember(MemberModifyRequest member) throws Exception {
-//		if(isDuplicateByNickName(member.getNickName())) {
-//			throw new Exception();
-//		}
+		if (isDuplicateByNickName(member.getNickName())) {
+			return -1;
+		}
 		return memberDao.updateMember(member);
 	}
 
 	@Override
 	public int removeMember(MemberDeleteRequest member) throws SQLException {
 		return memberDao.deleteMember(member);
+	}
+
+	@Override
+	public boolean isDuplicateById(String id) throws Exception {
+		return memberDao.isDuplicateById(id);
 	}
 
 }

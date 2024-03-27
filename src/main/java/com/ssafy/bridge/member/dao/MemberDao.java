@@ -17,7 +17,7 @@ public interface MemberDao {
 	int insertMember(MemberAddRequest member) throws SQLException;
 
 	MemberResponse selectMember(String id) throws SQLException;
-	
+
 	boolean isDuplicateByNickName(String nickName) throws SQLException;
 
 	MemberLoginResponse loginMember(MemberLoginRequest member) throws SQLException;
@@ -25,4 +25,6 @@ public interface MemberDao {
 	int updateMember(MemberModifyRequest member) throws SQLException;
 
 	int deleteMember(MemberDeleteRequest member) throws SQLException;
+
+	boolean isDuplicateById(String id) throws SQLException;
 }

@@ -1,7 +1,5 @@
 package com.ssafy.bridge.member;
 
-import java.sql.SQLException;
-
 import com.ssafy.bridge.member.dto.request.MemberAddRequest;
 import com.ssafy.bridge.member.dto.request.MemberDeleteRequest;
 import com.ssafy.bridge.member.dto.request.MemberLoginRequest;
@@ -32,4 +30,5 @@ public interface MemberService {
 
 	int removeMember(MemberDeleteRequest member) throws Exception;
 	
+	boolean isDuplicateById(String id) throws Exception;
 }
