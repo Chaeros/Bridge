@@ -52,9 +52,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int modifyMember(MemberModifyRequest member) throws Exception {
-		if(isDuplicateByNickName(member.getNickName())) {
-			throw new Exception();
-		}
+//		if(isDuplicateByNickName(member.getNickName())) {
+//			throw new Exception();
+//		}
 		return memberDao.updateMember(member);
 	}
 

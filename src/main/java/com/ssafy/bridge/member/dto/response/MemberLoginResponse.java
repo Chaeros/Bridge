@@ -24,7 +24,7 @@ public class MemberLoginResponse {
 		return name;
 	}
 
-	public String getNick_name() {
+	public String getNickName() {
 		return nickName;
 	}
 
