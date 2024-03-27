@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@charset "UTF-8";
+
 .form-group {
 	margin: 3px
 }
@@ -14,7 +16,7 @@ main {
 	align-items: center;
 }
 
-#addForm {
+#editForm {
 	height: 500px;
 	width: 70%;
 	display: flex;
@@ -31,7 +33,7 @@ main {
 	height: 250px;
 }
 
-.form-group>input {
+.form-group >input {
 	height: 40px;
 	font-size: 20px;
 }
