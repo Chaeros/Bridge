@@ -61,10 +61,10 @@ public class MemberController extends HttpServlet {
 
 	private void modifyFormMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 		request.setAttribute("id", member);
 
-		request.getRequestDispatcher("/member/remove.jsp").forward(request, response);
+		request.getRequestDispatcher("/member/modify.jsp").forward(request, response);
 
 	}
 
@@ -104,12 +104,12 @@ public class MemberController extends HttpServlet {
 
 	private void modifyMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 
 		memberService.modifyMember(new MemberModifyRequest(member.getId(), request.getParameter("password"),
 				request.getParameter("name"), request.getParameter("nickName"), request.getParameter("region"),
 				request.getParameter("email")));
-		response.sendRedirect(request.getContextPath() + "/member?action=modify");
+		response.sendRedirect(request.getContextPath() + "/member?action=search");
 	}
 
 	private void removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
