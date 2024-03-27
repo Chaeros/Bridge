@@ -114,7 +114,7 @@ public class MemberController extends HttpServlet {
 
 	private void removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 
 		memberService.removeMember(new MemberDeleteRequest(member.getId(), request.getParameter("password")));
 		response.sendRedirect(request.getContextPath() + "/boardindex.jsp");
