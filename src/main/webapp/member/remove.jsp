@@ -10,7 +10,7 @@
 	<form method="post" action="${pageContext.request.contextPath}/member">
 		<input hidden="ture" name="action" value="remove"> <label
 			for="password">비밀번호 </label> 
-			<input id="password" name="password">
+			<input id="password" name="password" required>
 			<div>
 				<button type="submit">탈퇴하기</button>
 			</div>

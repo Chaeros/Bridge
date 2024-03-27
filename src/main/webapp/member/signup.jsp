@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,36 +17,37 @@
 		<div class="all-form">
 			<div class="logo">Bridge</div>
 			<div class="title">회원가입</div>
-			<form method="post" action="${pageContext.request.contextPath}/member">
+			<form method="post"
+				action="${pageContext.request.contextPath}/member">
 				<div class="input-form">
 					<input type="hidden" name="action" value="add">
 					<div class="input-form-content">
 						<label for="name">이름</label> <input type="text" id="name"
-							name="name" />
+							name="name" required />
 					</div>
 					<div class="input-form-content">
 						<label for="userid">아이디</label> <input type="text" id="userId"
-							name="id" />
+							name="id" required />
 					</div>
 					<div class="input-form-content">
 						<label for="nickName">닉네임</label> <input type="text" id="nickName"
-							name="nickName" />
+							name="nickName" required />
 					</div>
 					<div class="input-form-content">
-						<label for="userpwd">비밀번호</label> <input type="text" id="userpwd"
-							name="password" />
+						<label for="userpwd">비밀번호</label> <input type="password"
+							id="userpwd" name="password" required />
 					</div>
 					<div class="input-form-content">
-						<label for="userpwd-confirm">비밀번호 확인</label> <input type="text"
-							id="userpwd-confirm" />
+						<label for="userpwd-confirm">비밀번호 확인</label> <input
+							type="password" id="userpwd-confirm" required />
 					</div>
 					<div class="input-form-content">
-						<label for="email">이메일</label> <input type="text" id="email"
-							name="email" />
+						<label for="email">이메일</label> <input type="email" id="email"
+							name="email" required />
 					</div>
 					<div class="input-form-content">
 						<label for="region">지역</label> <input type="text" id="region"
-							name="region" />
+							name="region" required />
 					</div>
 				</div>
 				<div>

@@ -21,23 +21,23 @@
 		</div>
 		<div>
 			<label for="name">이름</label> <input id="name" value="${member.name}"
-				name="name">
+				name="name" required>
 		</div>
 		<div>
 			<label for="nickName">닉네임</label> <input id="nickName"
-				value="${member.nickName}" name="nickName">
+				value="${member.nickName}" name="nickName" required>
 		</div>
 		<div>
 			<label for="region">지역</label> <input id="region"
-				value="${member.region}" name="region">
+				value="${member.region}" name="region" required>
 		</div>
 		<div>
 			<label for="email">이메일</label> <input type="email" id="email"
-				value="${member.email}" name="email">
+				value="${member.email}" name="email" required>
 		</div>
 		<div>
 			<label for="password">비밀번호 확인</label> <input type="password"
-				id="password" name="password">
+				id="password" name="password" required>
 		</div>
 		<button type="submit">수정</button>
 	</form>
