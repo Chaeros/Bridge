@@ -63,15 +63,12 @@ public class MemberDaoImpl implements MemberDao {
 			int index = 0;
 			pstmt.setString(++index, id);
 			ResultSet rs = pstmt.executeQuery();
-			return new MemberResponse(
-					rs.getString("id"), 
-					rs.getString("password"), 
-					rs.getString("name"),
-					rs.getString("nick_name"), 
-					rs.getString("region"), 
-					rs.getString("email")
-					);
+			if (rs.next()) {
+				return new MemberResponse(rs.getString("id"), rs.getString("password"), rs.getString("name"),
+						rs.getString("nick_name"), rs.getString("region"), rs.getString("email"));
+			}
 		}
+		return null;
 	}
 
 	@Override
@@ -108,14 +105,12 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(++index, member.getId());
 			pstmt.setString(++index, member.getPassword());
 			ResultSet rs = pstmt.executeQuery();
-			return new MemberLoginResponse(
-					rs.getString("id"), 
-					rs.getString("name"), 
-					rs.getString("nick_name"),
-					rs.getString("region"), 
-					rs.getString("email")
-					);
+			if (rs.next()) {
+				return new MemberLoginResponse(rs.getString("id"), rs.getString("name"), rs.getString("nick_name"),
+						rs.getString("region"), rs.getString("email"));
+			}
 		}
+		return null;
 	}
 
 	@Override
