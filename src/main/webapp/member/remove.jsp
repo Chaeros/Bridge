@@ -1,19 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/common/header.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/common/footer.css" />
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
 	<form method="post" action="${pageContext.request.contextPath}/member">
 		<input hidden="ture" name="action" value="remove"> <label
-			for="password">ºñ¹Ð¹øÈ£ </label> 
-			<input id="password" name="password">
+			for="password">ë¹„ë°€ë²ˆí˜¸ </label> 
+			<input id="password" name="password" required>
 			<div>
-				<button type="submit">Å»ÅðÇÏ±â</button>
+				<button type="submit">íƒˆí‡´í•˜ê¸°</button>
 			</div>
 	</form>
+		<jsp:include page="../footer.jsp" />
 </body>
 </html>
