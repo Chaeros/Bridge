@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,41 +15,41 @@
 	<main>
 		<div class="all-form">
 			<div class="logo">Bridge</div>
-			<div class="title">ȸ������</div>
+			<div class="title">회원가입</div>
 			<form method="post" action="${pageContext.request.contextPath}/member">
 				<div class="input-form">
 					<input type="hidden" name="action" value="add">
 					<div class="input-form-content">
-						<label for="name">�̸�</label> <input type="text" id="name"
+						<label for="name">이름</label> <input type="text" id="name"
 							name="name" />
 					</div>
 					<div class="input-form-content">
-						<label for="userid">���̵�</label> <input type="text" id="userId"
+						<label for="userid">아이디</label> <input type="text" id="userId"
 							name="id" />
 					</div>
 					<div class="input-form-content">
-						<label for="nickName">�г���</label> <input type="text" id="nickName"
+						<label for="nickName">닉네임</label> <input type="text" id="nickName"
 							name="nickName" />
 					</div>
 					<div class="input-form-content">
-						<label for="userpwd">��й�ȣ</label> <input type="text" id="userpwd"
+						<label for="userpwd">비밀번호</label> <input type="text" id="userpwd"
 							name="password" />
 					</div>
 					<div class="input-form-content">
-						<label for="userpwd-confirm">��й�ȣ Ȯ��</label> <input type="text"
+						<label for="userpwd-confirm">비밀번호 확인</label> <input type="text"
 							id="userpwd-confirm" />
 					</div>
 					<div class="input-form-content">
-						<label for="email">�̸���</label> <input type="text" id="email"
+						<label for="email">이메일</label> <input type="text" id="email"
 							name="email" />
 					</div>
 					<div class="input-form-content">
-						<label for="region">����</label> <input type="text" id="region"
+						<label for="region">지역</label> <input type="text" id="region"
 							name="region" />
 					</div>
 				</div>
 				<div>
-					<button id="signup_btn" class="submit" type="submit">�����ϱ�</button>
+					<button id="signup_btn" class="submit" type="submit">가입하기</button>
 				</div>
 			</form>
 		</div>

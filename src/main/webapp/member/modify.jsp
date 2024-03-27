@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,19 +9,19 @@
 	<form method="post" action="${pageContext.request.contextPath}/member">
 		<input hidden="true" name="action" value="modify">
 		<div>
-			<label for="name">ÀÌ¸§</label> <input id="name"
+			<label for="name">ì´ë¦„</label> <input id="name"
 				value="${member.name}">
 		</div>
 		<div>
-			<label for="id">¾ÆÀÌµð</label> <input id="id"
+			<label for="id">ì•„ì´ë””</label> <input id="id"
 				value="${member.id}">
 		</div>
 		<div>
-			<label for="region">Áö¿ª</label> <input id="region"
+			<label for="region">ì§€ì—­</label> <input id="region"
 				value="${member.region}">
 		</div>
 		<div>
-			<label for="email">ÀÌ¸ÞÀÏ</label> <input type="email" id="email"
+			<label for="email">ì´ë©”ì¼</label> <input type="email" id="email"
 				value="${member.email}">
 		</div>
 	</form>

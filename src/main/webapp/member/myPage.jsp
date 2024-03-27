@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Document</title>
-<link rel="stylesheet" href="../css/header.css" />
-<link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/mypage.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css" />
 </head>
 
 <body>
@@ -17,14 +16,14 @@
 		<div class="header-content">
 			<h1 class="title">Bridge</h1>
 			<div class="nav">
-				<a>°ü±¤Áö Ã£±â</a> <a>³» Á¤º¸</a> <a>·Î±×¾Æ¿ô</a>
+				<a>ê´€ê´‘ì§€ ì°¾ê¸°</a> <a>ë‚´ ì •ë³´</a> <a>ë¡œê·¸ì•„ì›ƒ</a>
 			</div>
 		</div>
 	</header>
 
 	<main>
 		<section class="title">
-			<h3>¸¶ÀÌÆäÀÌÁö</h3>
+			<h3>ë§ˆì´íŽ˜ì´ì§€</h3>
 		</section>
 		<div class="profile">
 			<div class="profile_img">
@@ -34,27 +33,27 @@
 			<div class="p_component">
 				<div class="profile_input" id="profile_input">
 					<div>
-						<label for="name">ÀÌ¸§</label>
+						<label for="name">ì´ë¦„</label>
 						<p id="name">${member.name}</p>
 					</div>
 					<div>
-						<label for="id">¾ÆÀÌµð</label>
+						<label for="id">ì•„ì´ë””</label>
 						<p id="id">${member.id}</p>
 					</div>
 					<div>
-						<label for="region">Áö¿ª</label>
+						<label for="region">ì§€ì—­</label>
 						<p id="region">${member.region}</p>
 					</div>
 					<div>
-						<label for="email">ÀÌ¸ÞÀÏ</label>
+						<label for="email">ì´ë©”ì¼</label>
 						<p id="email">${member.name}</p>
 					</div>
 				</div>
 
 				<div class="input_button">
 
-					<button id="fix">¼öÁ¤</button>
-					<button id="drawal">È¸¿ø Å»ÅðÇÏ±â</button>
+					<button id="fix">ìˆ˜ì •</button>
+					<button id="drawal">íšŒì› íƒˆí‡´í•˜ê¸°</button>
 				</div>
 			</div>
 
@@ -62,7 +61,7 @@
 		</div>
 	</main>
 	<footer class="footer"></footer>
-	<script src="../js/mypage.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/js/mypage.js" type="text/javascript"></script>
 </body>
 
 </html>
