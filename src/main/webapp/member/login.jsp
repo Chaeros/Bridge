@@ -23,7 +23,7 @@
 					<label for="id">아이디</label> <input id="id" name="id" type="text" />
 				</div>
 				<div class="pass">
-					<label for="pass">비밀번호</label> <input id="pass" name="password"
+					<label for="pass">비밀번호</label> <input type="password" id="pass" name="password"
 						type="text" />
 				</div>
 				<div>

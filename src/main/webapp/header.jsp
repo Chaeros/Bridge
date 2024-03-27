@@ -14,7 +14,7 @@
 			<div class="nav">
 				<a>관광지 찾기</a>
 				<a href="${pageContext.request.contextPath}/member?action=search">내 정보</a>
-				<a>로그아웃</a>
+				<a href="${pageContext.request.contextPath}/member?action=logout">로그아웃</a>
 			</div>
     	</div>
 	</div>
