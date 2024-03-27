@@ -53,10 +53,20 @@ public class MemberController extends HttpServlet {
 			case "removeForm":
 				removeFormMember(request, response);
 				break;
+			case "logout":
+				logoutMember(request, response);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void logoutMember(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("member");
+		
+		response.sendRedirect(request.getContextPath() + "/member/login.jsp");
 	}
 
 	private void modifyFormMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -114,7 +124,7 @@ public class MemberController extends HttpServlet {
 
 	private void removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 
 		memberService.removeMember(new MemberDeleteRequest(member.getId(), request.getParameter("password")));
 		response.sendRedirect(request.getContextPath() + "/boardindex.jsp");
