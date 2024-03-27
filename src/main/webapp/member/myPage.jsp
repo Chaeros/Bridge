@@ -12,19 +12,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common/footer.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mypage.css" />
+	href="${pageContext.request.contextPath}/css/member/mypage.css" />
 </head>
 
 <body>
-	<header class="header">
-		<div class="header-content">
-			<h1 class="title">Bridge</h1>
-			<div class="nav">
-				<a>관광지 찾기</a> <a>내 정보</a> <a>로그아웃</a>
-			</div>
-		</div>
-	</header>
-
+	<jsp:include page="../header.jsp" />
 	<main>
 		<section class="title">
 			<h3>마이페이지</h3>
@@ -68,7 +60,7 @@
 
 		</div>
 	</main>
-	<footer class="footer"></footer>
+		<jsp:include page="../footer.jsp" />
 	<script src="${pageContext.request.contextPath}/js/mypage.js"
 		type="text/javascript"></script>
 </body>

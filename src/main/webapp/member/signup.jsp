@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/header.css" />
 <link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/signup.css" />
+<link rel="stylesheet" href="../css/member/signup.css" />
 <title>Document</title>
 </head>
 
