@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+.all-content {
+  display: flex;
+  justify-content: center;
+  margin: 10px 100px;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitle {
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 4px solid blue;
+  width: fit-content;
+  margin: 10px 0;
+}
+
+.wrap {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.left-content{
+  width: 30%;
+}
+
+.selectinfo {
+  display: flex;
+  flex-wrap: wrap; /* 요소들이 한 줄에 다 들어가지 않을 때 줄 바꿈 */
+  align-items: center;
+}
+
+.selectinfo > div {
+  margin-right: 10px; /* 각 div 요소 사이의 간격 */
+}
+
+.selectinfo-title {
+  font-weight: bold;
+}
+
+.selectinfo select,
+.selectinfo input[type="text"],
+.selectinfo button {
+  margin-right: 10px; /* 각 요소 사이의 간격 */
+}
+
+#keyword{
+    width: 90px;
+}
+
+#submitbtn {
+    background-color: #007bff; /* 파란색 배경색 지정 */
+    color: white; /* 흰색 텍스트 색상 지정 */
+    padding: 10px 10px; /* 내부 여백 설정 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 설정 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    font-size: 15px;
+    font-weight: bold;
+}
+  
+  #submitbtn:hover {
+    background-color: #0056b3; /* 마우스를 올렸을 때의 배경색 변경 */
+  }
+
+.destinations {
+  height: 600px;
+  overflow-y: auto;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.destination {
+  width: 500px;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.right-content {
+  margin: 20px;
+}
+
+.detail-content {
+  width: 800px;
+  height: 190px;
+  margin: 5px 0;
+  border: 1px solid;
+  border-radius: 5px;
+}
