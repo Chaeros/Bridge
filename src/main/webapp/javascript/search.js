@@ -55,6 +55,56 @@
     }
     requestTourDestination(keyword, areacode, sigunguCode, contentTypeId);
   }
+  
+  function getAttractionList(){
+	keyword = document.querySelector("#keyword").value;
+    areacode = document.querySelector(".main-category").value;
+    sigunguCode = document.querySelector(".sub-category").value;
+    contentTypeId = document.querySelector(".type-category").value;
+	console.log("dd");
+	console.log(keyword, areacode, sigunguCode, contentTypeId);
+	fetch("http://localhost:8080/bridge/attractionInfo?action=list", {
+	    method: 'POST', // 요청 메서드를 POST로 설정합니다.
+	    headers: {
+	        'Content-Type': 'application/json' // 요청 헤더에 JSON 형식의 데이터를 전송한다고 명시합니다.
+	    },
+	    body: JSON.stringify({ // 요청 본문에 JSON 형식의 데이터를 문자열로 변환하여 전송합니다.
+	        sidoCode : areacode,
+	        gugunCode : sigunguCode,
+	        contentTypeId : contentTypeId,
+	        title : keyword
+	    })
+	})
+	.then((res) => res.json())
+	.then((data) => {
+	    console.log(data);
+	    console.log(data[0]);
+	    console.log(data[0].addr1);
+	})
+	.catch((error) => {
+	    console.error('Error fetching data:', error);
+	});
+  }
+  
+  function bringJson(){
+	console.log("dd");
+	fetch("http://localhost:8080/bridge/attractionInfo?action=search", {
+	    method: 'POST', // 요청 메서드를 POST로 설정합니다.
+	    headers: {
+	        'Content-Type': 'application/json' // 요청 헤더에 JSON 형식의 데이터를 전송한다고 명시합니다.
+	    },
+	    body: JSON.stringify({ // 요청 본문에 JSON 형식의 데이터를 문자열로 변환하여 전송합니다.
+	        contentId: 125266
+	    })
+	})
+	.then((res) => res.json())
+	.then((data) => {
+	    console.log(data);
+	})
+	.catch((error) => {
+	    console.error('Error fetching data:', error);
+	});
+  }
 
   function requestTourDestination(keyword, areacode, sigunguCode, contentTypeId) {
     console.log(keyword);

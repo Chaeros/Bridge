@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ssafy.bridge.attraction.info.dao.AttractionInfoDao;
 import com.ssafy.bridge.attraction.info.dao.AttractionInfoDaoImpl;
+import com.ssafy.bridge.attraction.info.dto.request.AttractionInfoListRequest;
 import com.ssafy.bridge.attraction.info.dto.response.AttractionInfoResponse;
 
 public class AttractionInfoServiceImpl implements AttractionInfoService {
@@ -25,7 +26,7 @@ public class AttractionInfoServiceImpl implements AttractionInfoService {
 	}
 	
 	@Override
-	public List<AttractionInfoResponse> displayFreeBoardList() throws SQLException {
-		return attractionInfoDao.selectAttractionInfoList();
+	public List<AttractionInfoResponse> displayFreeBoardList(AttractionInfoListRequest attractionInfoListRequest) throws SQLException {
+		return attractionInfoDao.selectAttractionInfoList(attractionInfoListRequest);
 	}
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ssafy.bridge.attraction.info.dto.request.AttractionInfoListRequest;
 import com.ssafy.bridge.attraction.info.dto.response.AttractionInfoResponse;
 import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 import com.ssafy.bridge.util.DBUtil;
@@ -26,16 +27,25 @@ public class AttractionInfoDaoImpl implements AttractionInfoDao {
 	}
 	
 	@Override
-	public List<AttractionInfoResponse> selectAttractionInfoList() throws SQLException {
+	public List<AttractionInfoResponse> selectAttractionInfoList(AttractionInfoListRequest attractionInfoListRequest) throws SQLException {
 		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select *				");
-		sql.append("  from attractionInfo	");
+		sql.append("select *						");
+		sql.append("  from attraction_info			");
+		sql.append(" where sido_code = ? and		");
+		sql.append("  	   gugun_code = ? and		");
+		sql.append("	   content_type_id = ? and	");
+		sql.append("  	   title like ?				");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		
 		try(con;pstmt){
-			List<AttractionInfoResponse> list = new ArrayList<>();
+			int index = 0;
+			pstmt.setInt(++index, attractionInfoListRequest.getSidoCode());
+			pstmt.setInt(++index, attractionInfoListRequest.getGugunCode());
+			pstmt.setInt(++index, attractionInfoListRequest.getContentTypeId());
+			pstmt.setString(++index, "%"+attractionInfoListRequest.getTitle() + "%");
 			ResultSet rs = pstmt.executeQuery();
+			List<AttractionInfoResponse> list = new ArrayList<>();
 			while ( rs.next() ) {
 				list.add(new AttractionInfoResponse(
 						rs.getInt("content_id"),
@@ -63,7 +73,7 @@ public class AttractionInfoDaoImpl implements AttractionInfoDao {
 		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select *			");
-		sql.append("  from attractionInfo	");
+		sql.append("  from attraction_info	");
 		sql.append(" where content_id = ?		");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		

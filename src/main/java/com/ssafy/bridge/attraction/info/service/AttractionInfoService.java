@@ -3,6 +3,7 @@ package com.ssafy.bridge.attraction.info.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ssafy.bridge.attraction.info.dto.request.AttractionInfoListRequest;
 import com.ssafy.bridge.attraction.info.dto.response.AttractionInfoResponse;
 
 public interface AttractionInfoService {
@@ -15,5 +16,5 @@ public interface AttractionInfoService {
 	 */
 	
 	public AttractionInfoResponse searchAttractionInfo(int contentId) throws SQLException;
-	public List<AttractionInfoResponse> displayFreeBoardList() throws SQLException;
+	public List<AttractionInfoResponse> displayFreeBoardList(AttractionInfoListRequest attractionInfoListRequest) throws SQLException;
 }

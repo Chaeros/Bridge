@@ -59,7 +59,7 @@
             </div>
             <!-- 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID -->
             <div>
-              <div class="selectinfo-title">분류</div>
+             <div class="selectinfo-title">분류</div>
               <select class="type-category">
                 <option value="">--전체--</option>
                 <option value="12">관광지</option>
@@ -85,6 +85,7 @@
           <div class="detail-content"></div>
         </div>
       </div>
+      <button id="test" onclick="getAttractionList()">test</button>
     </div>
 
     <script
