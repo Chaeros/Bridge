@@ -13,7 +13,7 @@
 
 <body>
 <body class="body">
-	<img class="left-content" src="../img/mainImg.jpg" alt="" />
+	<img class="left-content" src="${pageContext.request.contextPath}/img/mainImage.jpg" alt="" />
 	<div class="right-content">
 		<div class="input-content">
 			<div class="title">Bridge</div>

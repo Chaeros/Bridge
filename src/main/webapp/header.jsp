@@ -10,9 +10,10 @@
 <header class="header">
  	<div class="header-position">
 		<div class="header-content">
-			<h1 class="title"><a href="/bridge/boardindex.jsp">Bridge</a></h1>
-			<div class="nav">
+			<h1 class="title"><a href="">Bridge</a></h1>
+			<div class="nav">	
 				<a href="${pageContext.request.contextPath}/attractionInfo?action=main">관광지 찾기</a>
+				<a href="${pageContext.request.contextPath}/freeboard?action=list">게시판</a>
 				<a href="${pageContext.request.contextPath}/member?action=search">내 정보</a>
 				<a href="${pageContext.request.contextPath}/member?action=logout">로그아웃</a>
 			</div>

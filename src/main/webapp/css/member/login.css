@@ -7,10 +7,12 @@
 
 .body {
     display: flex;
+    height : 100%;
 }
 
 .body img {
     width: auto;
+    height : 100%;
     max-width: 1432px;
 }
 

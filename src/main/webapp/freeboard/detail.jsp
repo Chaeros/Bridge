@@ -38,8 +38,7 @@ nav a {
 			<div class="content">${board.content}</div>
 		</div>
 		<div class="link">
-			<br> <a href="${pageContext.request.contextPath}/boardindex.jsp">메인
-				페이지</a> <br>
+			<br> <a href="${pageContext.request.contextPath}/freeboard?action=list">게시판 목록</a> <br>
 			<c:choose>
 				<c:when test="${board.writer eq member.nickName}">
 					<a href="${pageContext.request.contextPath}/freeboard?action=remove&no=${board.no}">삭제하기</a>

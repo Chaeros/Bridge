@@ -119,7 +119,7 @@ public class MemberController extends HttpServlet {
 		}
 
 		session.setAttribute("member", member);
-		response.sendRedirect(request.getContextPath() + "/boardindex.jsp");
+		response.sendRedirect(request.getContextPath());
 
 	}
 

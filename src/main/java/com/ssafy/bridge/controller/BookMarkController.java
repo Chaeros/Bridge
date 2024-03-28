@@ -39,7 +39,6 @@ public class BookMarkController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		System.out.println("bookmark");
 		try {
 			switch(action) {
 			case "add":
@@ -72,8 +71,6 @@ public class BookMarkController extends HttpServlet {
 	private void listBookMark(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		HttpSession session = request.getSession();
 		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
-		System.out.println(member);
-		System.out.println(member.getId());
 		List<BookMarkResponse> bookMarks = bookMarkService.displayBookMarkList(member.getId());
         
         response.setContentType("application/json");
@@ -94,8 +91,6 @@ public class BookMarkController extends HttpServlet {
         
 		HttpSession session = request.getSession();
 		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
-		System.out.println(member);
-		System.out.println(member.getId());
         int contentId = jsonBody.get("contentId").getAsInt();
         bookMarkService.addBookMark(contentId, member.getId());
 	}

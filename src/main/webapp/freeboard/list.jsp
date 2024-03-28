@@ -11,7 +11,7 @@
 	href="${pageContext.request.contextPath}/css/common/footer.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/freeboard/list.css" />
-<title>상품 목록</title>
+<title>게시판</title>
 <style type="text/css">
 table, th, td {
 	border: 1px solid black;
@@ -33,11 +33,9 @@ nav a {
 	<jsp:include page="/header.jsp" />
 	<main>
 		<nav>
-			<h1>상품 목록 페이지</h1>
+			<h1>게시판<h1>
 		</nav>
-		<div class="link">
-			<a href="${pageContext.request.contextPath}/boardindex.jsp">메인
-				페이지</a> <br> <a
+		<div class="link"><br> <a
 				href="${pageContext.request.contextPath}/freeboard?action=addForm">등록하기</a>
 		</div>
 		<section>
