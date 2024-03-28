@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+main {
+	margin: auto 15%;
+	height: 600px;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+nav {
+	margin: 30px;
+	height: 20px;
+}
+
+.board {
+	width: 400px;
+	height: 500px;
+	border: 1px solid black; 
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	height: 20px;
+	text-align: center;
+	margin: 10px;
+}
+
+.wirter {
+	text-align: right;
+	height: 30px;
+	margin: 20px 30px
+}
+
+.content {
+	height: 330px;
+	margin: 0 30px;
+	overflow-y: scroll;
+}
+
+.link {
+	display: flex;
+	height: 50px;
+	justify-content: space-around;
+}
+
+a {
+	margin: 20px;
+	width: 100px;
+	text-align: center;
+}
