@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+main {
+	margin: auto 15%;
+	height: 600px;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+nav {
+	margin: 30px;
+	height: 20px;
+}
+
+.link {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
+}
+
+.link>a {
+	margin: 0 30px;
+}
+
+section {
+	width: 70%;
+	height: 400px;
+}
+
+table {
+	width: 100%;
+}
+
+thead {
+	height: 30px;
+}
+
+tbody>tr {
+	text-align: center;
+	
+	height: 30px;
+}
+
+.pagination {
+	display: inline-block;
+	margin: 20px;
+	height: 20px;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}

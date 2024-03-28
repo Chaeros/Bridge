@@ -16,7 +16,7 @@ nav {
 }
 
 .board {
-	width: 400px;
+	width: 70%;
 	height: 500px;
 	border: 1px solid black; 
 	display: flex;
