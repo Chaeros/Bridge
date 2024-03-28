@@ -8,8 +8,10 @@ import org.apache.tomcat.jakartaee.commons.lang3.math.NumberUtils;
 
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
+import com.ssafy.bridge.freeboard.dto.request.FreeBoardRemoveRequest;
 import com.ssafy.bridge.freeboard.service.FreeBoardService;
 import com.ssafy.bridge.freeboard.service.FreeBoardServiceImpl;
+import com.ssafy.bridge.member.dto.response.MemberLoginResponse;
 import com.ssafy.bridge.util.PageNavigation;
 
 import jakarta.servlet.ServletException;
@@ -17,6 +19,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/freeboard")
 public class FreeBoardController extends HttpServlet {
@@ -74,7 +77,7 @@ public class FreeBoardController extends HttpServlet {
 
 		PageNavigation pageNavigation = freeBoardService.makePageNavigation(map);
 		request.setAttribute("navigation", pageNavigation);
-		
+
 		request.getRequestDispatcher("/freeboard/list.jsp").forward(request, response);
 	}
 
@@ -85,30 +88,62 @@ public class FreeBoardController extends HttpServlet {
 	}
 
 	private void removeFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		freeBoardService.removeFreeBoard(Integer.parseInt(request.getParameter("no")));
+		hasMemberSection(request, response);
+
+		MemberLoginResponse member = (MemberLoginResponse) request.getSession().getAttribute("member");
+
+		int res = freeBoardService.removeFreeBoard(
+				new FreeBoardRemoveRequest(Integer.parseInt(request.getParameter("no")), member.getId()));
+
+		if (res == 0) {
+			response.sendRedirect("/bridge/freeboard?action=detail");
+		}
 		response.sendRedirect("/bridge/freeboard?action=list");
 	}
 
 	private void modifyFormFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		hasMemberSection(request, response);
+
+		MemberLoginResponse member = (MemberLoginResponse) request.getSession().getAttribute("member");
+
 		request.setAttribute("board",
 				freeBoardService.searchByNoFreeBoard(Integer.parseInt(request.getParameter("no"))));
 		request.getRequestDispatcher("/freeboard/modify.jsp").forward(request, response);
 	}
 
 	private void modifyFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		freeBoardService.modifyFreeBoard(new FreeBoardModifyRequest(Integer.parseInt(request.getParameter("no")),
-				request.getParameter("title"), request.getParameter("content")));
+		hasMemberSection(request, response);
+
+		MemberLoginResponse member = (MemberLoginResponse) request.getSession().getAttribute("member");
+
+		int res = freeBoardService
+				.modifyFreeBoard(new FreeBoardModifyRequest(Integer.parseInt(request.getParameter("no")),
+						request.getParameter("title"), request.getParameter("content"), member.getId()));
+
+		if (res == 0) {
+			response.sendRedirect("/bridge/freeboard?action=detail");
+		}
 		response.sendRedirect("/bridge/freeboard?action=list");
 	}
 
 	private void addFormFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		hasMemberSection(request, response);
+
 		request.getRequestDispatcher("/freeboard/add.jsp").forward(request, response);
 	}
 
 	private void addFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		hasMemberSection(request, response);
+
 		freeBoardService.addFreeBoard(new FreeBoardAddRequest(request.getParameter("title"),
 				request.getParameter("content"), request.getParameter("writer")));
 		response.sendRedirect("/bridge/freeboard?action=list");
 	}
 
+	private void hasMemberSection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("member") == null) {
+			response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+		}
+	}
 }

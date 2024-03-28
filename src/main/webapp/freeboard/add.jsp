@@ -40,7 +40,7 @@ nav a {
 			</div>
 			<div class="form-group">
 				<label for="writer">작성자</label> <input type="text" id="writer"
-					name="writer">
+					name="writer" value="${member.id}" readonly>
 			</div>
 			<div class="form-group">
 				<label for="content">내용</label>

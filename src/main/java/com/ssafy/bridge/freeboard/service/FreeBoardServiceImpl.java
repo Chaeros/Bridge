@@ -8,6 +8,7 @@ import com.ssafy.bridge.freeboard.dao.FreeBoardDao;
 import com.ssafy.bridge.freeboard.dao.FreeBoardDaoImpl;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
+import com.ssafy.bridge.freeboard.dto.request.FreeBoardRemoveRequest;
 import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 import com.ssafy.bridge.util.BoardSize;
 import com.ssafy.bridge.util.PageNavigation;
@@ -41,8 +42,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	@Override
-	public int removeFreeBoard(int no) throws SQLException {
-		return freeBoardDao.deleteFreeBoard(no);
+	public int removeFreeBoard(FreeBoardRemoveRequest board) throws SQLException {
+		return freeBoardDao.deleteFreeBoard(board);
 	}
 
 	@Override
