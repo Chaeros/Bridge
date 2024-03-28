@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
+import com.ssafy.bridge.freeboard.dto.request.FreeBoardRemoveRequest;
 import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 import com.ssafy.bridge.util.DBUtil;
 
@@ -53,7 +54,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao {
 		StringBuffer sql = new StringBuffer();
 		sql.append("update freeboard				");
 		sql.append("   set title = ? , content = ?	");
-		sql.append(" where no = ?	 				");
+		sql.append(" where no = ? and writer = ?		");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 
 		try (con; pstmt) {
@@ -61,21 +62,23 @@ public class FreeBoardDaoImpl implements FreeBoardDao {
 			pstmt.setString(++index, board.getTitle());
 			pstmt.setString(++index, board.getContent());
 			pstmt.setInt(++index, board.getNo());
+			pstmt.setString(++index, board.getId());
 			return pstmt.executeUpdate();
 		}
 	}
 
 	@Override
-	public int deleteFreeBoard(int no) throws SQLException {
+	public int deleteFreeBoard(FreeBoardRemoveRequest board) throws SQLException {
 		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
 		sql.append("delete from freeboard		");
-		sql.append(" where no = ? 				");
+		sql.append(" where no = ? and writer = ?	");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 
 		try (con; pstmt) {
 			int index = 0;
-			pstmt.setInt(++index, no);
+			pstmt.setInt(++index, board.getNo());
+			pstmt.setString(++index, board.getId());
 			return pstmt.executeUpdate();
 		}
 	}
@@ -116,7 +119,7 @@ public class FreeBoardDaoImpl implements FreeBoardDao {
 
 			int index = 0;
 			pstmt.setInt(++index, (int) map.get("start"));
-			pstmt.setInt(++index, (int)map.get("listSize"));
+			pstmt.setInt(++index, (int) map.get("listSize"));
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
