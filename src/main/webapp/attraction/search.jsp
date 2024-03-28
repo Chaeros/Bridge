@@ -76,7 +76,7 @@
               <div class="selectinfo-title">키워드</div>
               <input id="keyword" type="text" />
             </div>
-            <button id="submitbtn" onclick="getResult()">검색</button>
+            <button id="submitbtn" onclick="getAttractionList()">검색</button>
           </div>
           <div class="destinations"></div>
         </div>
@@ -85,7 +85,6 @@
           <div class="detail-content"></div>
         </div>
       </div>
-      <button id="test" onclick="getAttractionList()">test</button>
     </div>
 
     <script

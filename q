@@ -1,0 +1,153 @@
+[33mcommit 6b5ed38f2bf07787b15f5a3dbe8d154554420146[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Thu Mar 28 09:01:58 2024 +0900
+
+    Feat : 관광정보 fetch 모듈 개발
+
+[33mcommit 8570582adc50247f7679b3f4a0fd1ab73de10314[m
+Merge: ecc80f4 7fb49cf
+Author: Duna Seo <tjensk26@gmail.com>
+Date:   Wed Mar 27 17:04:41 2024 +0900
+
+    Merge pull request #5 from ensk26/main
+    
+    Fix : 한글 깨짐
+
+[33mcommit 7fb49cf449d725e473ceeaa4b0d38a61d0e65425[m
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Wed Mar 27 17:04:08 2024 +0900
+
+    Fix : 한글 깨짐
+
+[33mcommit ecc80f4f5a0a95df0feb4b36f0d382400600349e[m
+Merge: 675e647 3294de4
+Author: Duna Seo <tjensk26@gmail.com>
+Date:   Wed Mar 27 16:49:22 2024 +0900
+
+    Merge pull request #4 from ensk26/main
+    
+    Feat : member 관련 페이지 개발
+
+[33mcommit 3294de4c4627a6c7f5852cf0fdd1da1d459a1a4a[m
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Wed Mar 27 16:48:23 2024 +0900
+
+    Merge branch 'main' of https://github.com/ensk26/Bridge.git into main
+
+[33mcommit 3b2002da2ea2d2da3522784c3e82b83fa8189e27[m
+Merge: 31d04a4 675e647
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Wed Mar 27 16:47:56 2024 +0900
+
+    Merge branch 'main' of https://github.com/ensk26/Bridge.git into main
+
+[33mcommit 675e6475e5adbd348e5b0e7730e0d3352d6523a0[m
+Merge: 4c736ec 0194144
+Author: Duna Seo <tjensk26@gmail.com>
+Date:   Wed Mar 27 16:39:50 2024 +0900
+
+    Merge pull request #3 from ensk26/main
+    
+    Feat : member 관련 페이지 개발
+
+[33mcommit 31d04a4d584c64464837c14ba3daa0c9d4faf308[m
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Wed Mar 27 16:37:59 2024 +0900
+
+    Feat : member 관련 페이지 개발
+
+[33mcommit 0194144096e7c13d89d6cb781d32a85a0a9f3998[m
+Merge: c539817 4c736ec
+Author: Duna Seo <tjensk26@gmail.com>
+Date:   Tue Mar 26 22:39:21 2024 +0900
+
+    Merge branch 'Chaeros:main' into main
+
+[33mcommit 4c736ecd4a47c469c55aefbfd6a7bd1a3567b56e[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Tue Mar 26 11:30:19 2024 +0900
+
+    Feat : 관광지 정보 찾기 Front 개발
+
+[33mcommit c53981704be7662da02db3b46a927800b9377468[m
+Merge: 9795ab5 d92e2b1
+Author: Duna Seo <tjensk26@gmail.com>
+Date:   Tue Mar 26 09:07:24 2024 +0900
+
+    Merge branch 'Chaeros:main' into main
+
+[33mcommit d92e2b1e4a3276969f18f56883786a9b4f5aacd8[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Mon Mar 25 16:55:16 2024 +0900
+
+    Feat : 관광지 정보 Controller 개발
+
+[33mcommit 66968c99631eaf2109a1711f46b47086b791d1b7[m
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Mon Mar 25 16:23:42 2024 +0900
+
+    feat : 로그인 화면 개발
+
+[33mcommit 9795ab589ec8b3b2907729a2143ff2a201644b3c[m
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Mon Mar 25 15:30:04 2024 +0900
+
+    Fix :empty result set error
+
+[33mcommit dd81a18368d9b694b7c7e1baaef2586bdb65d92c[m
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Mon Mar 25 14:57:45 2024 +0900
+
+    Feat : 회원가입 화면 개발
+
+[33mcommit d06c51b7d6d72100f446df1bd18d9b34fde1a35b[m
+Merge: b8c39bc a7a7371
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Mon Mar 25 08:27:09 2024 +0900
+
+    Merge branch 'main' of https://github.com/Chaeros/Bridge
+
+[33mcommit b8c39bcab85691e7e7d3988401eefc6e5c5076fe[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Mon Mar 25 08:26:31 2024 +0900
+
+    Feat : 관광지정보 DAO 개발
+
+[33mcommit a7a7371aff0f6bcd76b574121a3cd1380e669584[m
+Merge: d8a233f 77ed085
+Author: Chanho Park <chpark6851@koreatech.ac.kr>
+Date:   Sun Mar 24 22:27:55 2024 +0900
+
+    Merge pull request #1 from ensk26/main
+    
+    Feat : 회원 CRUD API 개발
+
+[33mcommit 77ed0850fff8f2af197a7109c754a73d7d6f2e94[m
+Author: ensk26 <tjensk26@gmail.com>
+Date:   Sun Mar 24 22:21:18 2024 +0900
+
+    Feat : 회원 CRUD API 개발
+
+[33mcommit d8a233f1e1f3a02a4eb684883a889b3059cf7871[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Sun Mar 24 21:16:17 2024 +0900
+
+    Feat : 시도, 구군 호출 API 개발
+
+[33mcommit da6874ababf068570600253bc4af6d4e64b78d0c[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Sun Mar 24 17:52:19 2024 +0900
+
+    Feat : 자유게시판 프론트 jsp 개발
+
+[33mcommit 07ca48e42c72494cfd1cf3cacd079f691de4f5f5[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Sun Mar 24 15:38:49 2024 +0900
+
+    Feat : 자유게시판 CRUD API 개발
+
+[33mcommit 02ae285ef1ed24f72937b222109c002577057e80[m
+Author: chaeros <chpark6851@koreatech.ac.kr>
+Date:   Sun Mar 24 14:32:36 2024 +0900
+
+    feat : init

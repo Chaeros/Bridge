@@ -80,6 +80,90 @@
 	    console.log(data);
 	    console.log(data[0]);
 	    console.log(data[0].addr1);
+	    console.log("??");
+	    destinationBox.innerHTML = "";
+        itemList = [];
+        data.forEach((item, index) => {
+			console.log(item);
+          itemList.push(item);
+          let newItem = document.createElement("div");
+          newItem.classList.add("destination");
+
+		console.log(item.firstImage);
+          if (item.firstImage != "") {
+            newItem.innerHTML = `
+            <h3>`+item.title+`</h3>
+            <p>`+item.addr1+`</p>
+            <img src=`+item.firstImage+` width=300px>
+            `;
+          } else if (item.firstImage2 != "") {
+            newItem.innerHTML = `
+            <h3>`+item.title+`</h3>
+            <p>`+item.addr1+`</p>
+            <img src=`+item.firstImage2+` width=300px>
+            `;
+          } else {
+        	  newItem.innerHTML = `
+              <h3>`+item.title+`</h3>
+              <p>`+item.addr1+`</p>
+              `;
+          }
+          // 아이템의 내용을 추가합니다.
+
+          // destination 박스에 아이템을 추가합니다.
+          //   newItem.setAttribute("id", `destination-${index}`); // id 설정
+          newItem.setAttribute("id", "destination-"+index); // id 설정
+          destinationBox.appendChild(newItem);
+        });
+
+        let count = itemList.length;
+        console.log(count);
+        for (var i = 0; i < count; ++i) {
+        	console.log("destination-"+i);
+          	let a = document.getElementById("destination-"+i);
+          	a.addEventListener("click", function () {
+            // console.log(a);
+            // console.log(a.id);
+            let str = a.id.split("-"); // 쉼표를 기준으로 문자열을 분할하여 배열에 저장
+            console.log(str[1]);
+            console.log(itemList[str[1]]);
+            console.log(itemList[str[1]].latitude);
+            console.log(itemList[str[1]].longitude);
+
+            detailContentBox.innerHTML = "";
+            let newItem = document.createElement("div");
+            newItem.classList.add("detail");
+            newItem.innerHTML = `
+              <h3>`+itemList[str[1]].title+`</h3>
+              <p>`+itemList[str[1]].addr1+`</p>
+            `;
+            newItem.setAttribute("id", "detail-"+str[1].contentid); // id 설정
+            detailContentBox.appendChild(newItem);
+            // 지도 표기
+            options = {
+              //지도를 생성할 때 필요한 기본 옵션
+              center: new kakao.maps.LatLng(itemList[str[1]].latitude, itemList[str[1]].longitude), //지도의 중심좌표.
+              level: 1, //지도의 레벨(확대, 축소 정도)
+            };
+            map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+            // 마커가 표시될 위치입니다
+            markerPosition = new kakao.maps.LatLng(
+              itemList[str[1]].latitude,
+              itemList[str[1]].longitude
+            );
+
+            // 마커를 생성합니다
+            marker = new kakao.maps.Marker({
+              position: markerPosition,
+            });
+
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+          });
+        }
+
+        console.log(itemList);
 	})
 	.catch((error) => {
 	    console.error('Error fetching data:', error);
