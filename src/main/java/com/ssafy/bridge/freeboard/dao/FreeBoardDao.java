@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
-import com.ssafy.bridge.freeboard.dto.request.displayFreeBoardListRequest;
 import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 
 public interface FreeBoardDao {

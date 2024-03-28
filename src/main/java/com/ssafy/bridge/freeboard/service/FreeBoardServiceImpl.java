@@ -8,7 +8,6 @@ import com.ssafy.bridge.freeboard.dao.FreeBoardDao;
 import com.ssafy.bridge.freeboard.dao.FreeBoardDaoImpl;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
-import com.ssafy.bridge.freeboard.dto.request.displayFreeBoardListRequest;
 import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 import com.ssafy.bridge.util.BoardSize;
 import com.ssafy.bridge.util.PageNavigation;

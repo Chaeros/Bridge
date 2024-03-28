@@ -8,7 +8,6 @@ import org.apache.tomcat.jakartaee.commons.lang3.math.NumberUtils;
 
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
-import com.ssafy.bridge.freeboard.dto.request.displayFreeBoardListRequest;
 import com.ssafy.bridge.freeboard.service.FreeBoardService;
 import com.ssafy.bridge.freeboard.service.FreeBoardServiceImpl;
 import com.ssafy.bridge.util.PageNavigation;
