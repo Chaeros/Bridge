@@ -10,18 +10,7 @@
     <title>Document</title>
   </head>
   <body>
-    <header class="header">
-      <div class="header-position">
-        <div class="header-content">
-          <h1 class="title">Bridge</h1>
-          <div class="nav">
-            <a>관광지 찾기</a>
-            <a>내 정보</a>
-            <a>로그아웃</a>
-          </div>
-        </div>
-      </div>
-    </header>
+    <jsp:include page="/header.jsp"/>
 
     <div class="wrap">
       <div class="all-content">
@@ -86,6 +75,7 @@
         </div>
       </div>
     </div>
+    <jsp:include page="/footer.jsp"/>
 
     <script
       type="text/javascript"
@@ -115,6 +105,5 @@
     </script>
 
     <script src="${pageContext.request.contextPath}/javascript/search.js"></script>
-    <footer class="footer"></footer>
   </body>
 </html>

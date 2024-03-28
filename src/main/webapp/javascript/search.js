@@ -69,6 +69,26 @@
 	        infowindow.close();
 	    };
 	}
+	
+	function addBookMark(contentId){
+		console.log("addBookMark");
+		fetch("http://localhost:8080/bridge/bookmark?action=add", {
+		    method: 'POST', // 요청 메서드를 POST로 설정합니다.
+		    headers: {
+		        'Content-Type': 'application/json' // 요청 헤더에 JSON 형식의 데이터를 전송한다고 명시합니다.
+		    },
+		    body: JSON.stringify({ // 요청 본문에 JSON 형식의 데이터를 문자열로 변환하여 전송합니다.
+		        contentId: contentId
+		    })
+		})
+		.then((res) => res.json())
+		.then((data) => {
+		    console.log(data);
+		})
+		.catch((error) => {
+		    console.error('Error fetching data:', error);
+		});
+	}
   
   function getAttractionList(){
 	keyword = document.querySelector("#keyword").value;
@@ -107,19 +127,19 @@
 		console.log(item.firstImage);
           if (item.firstImage != "") {
             newItem.innerHTML = `
-            <h3>`+item.title+`<button>★</button></h3>
+            <h3>`+item.title+`<button onclick="addBookMark(`+ item.contentId +`)">★</button></h3>
             <p>`+item.addr1+`</p>
             <img src=`+item.firstImage+` width=300px>
             `;
           } else if (item.firstImage2 != "") {
             newItem.innerHTML = `
-            <h3>`+item.title+`<button>★</button></h3>
+            <h3>`+item.title+`<button onclick="addBookMark(`+ item.contentId +`)">★</button></h3>
             <p>`+item.addr1+`</p>
             <img src=`+item.firstImage2+` width=300px>
             `;
           } else {
         	  newItem.innerHTML = `
-              <h3>`+item.title+`<button>★</button></h3>
+              <h3>`+item.title+`<button onclick="addBookMark(`+ item.contentId +`)">★</button></h3>
               <p>`+item.addr1+`</p>
               <img src=""/>
               `;

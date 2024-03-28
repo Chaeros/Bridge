@@ -8,12 +8,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.ssafy.bridge.bookmark.service.BookMarkService;
 import com.ssafy.bridge.bookmark.service.BookMarkServiceImpl;
+import com.ssafy.bridge.member.dto.response.MemberLoginResponse;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/bookmark")
 public class BookMarkController extends HttpServlet {
@@ -55,8 +57,12 @@ public class BookMarkController extends HttpServlet {
         }
 		JsonObject jsonBody = JsonParser.parseString(sb.toString()).getAsJsonObject();
         
+		HttpSession session = request.getSession();
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
+		System.out.println(member);
+		System.out.println(member.getId());
         int contentId = jsonBody.get("contentId").getAsInt();
-        bookMarkService.addBookMark(contentId, "ssafy");
+        bookMarkService.addBookMark(contentId, member.getId());
         System.out.println("confirm");
 	}
 	
