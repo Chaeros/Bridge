@@ -3,9 +3,12 @@ package com.ssafy.bridge.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.ssafy.bridge.bookmark.dto.response.BookMarkResponse;
 import com.ssafy.bridge.bookmark.service.BookMarkService;
 import com.ssafy.bridge.bookmark.service.BookMarkServiceImpl;
 import com.ssafy.bridge.member.dto.response.MemberLoginResponse;
@@ -31,6 +34,8 @@ public class BookMarkController extends HttpServlet {
 		return bookMarkController;
 	}
 	
+	private ObjectMapper objectMapper = new ObjectMapper();
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
@@ -41,11 +46,41 @@ public class BookMarkController extends HttpServlet {
 				addBookMark(request,response);
 				break;
 			case "list":
+				listBookMark(request,response);
+				break;
+			case "remove":
+				removeBookMark(request,response);
 				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void removeBookMark(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+		BufferedReader reader = request.getReader();
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+		JsonObject jsonBody = JsonParser.parseString(sb.toString()).getAsJsonObject();
+		int myAttractionId = jsonBody.get("myAttractionId").getAsInt();
+		
+        bookMarkService.removeBookMark(myAttractionId);
+	}
+	private void listBookMark(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+		HttpSession session = request.getSession();
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
+		System.out.println(member);
+		System.out.println(member.getId());
+		List<BookMarkResponse> bookMarks = bookMarkService.displayBookMarkList(member.getId());
+        
+        response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    
+	    String attractionInfoJson = objectMapper.writeValueAsString(bookMarks);
+	    response.getWriter().write(attractionInfoJson);
 	}
 	
 	private void addBookMark(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
@@ -63,7 +98,6 @@ public class BookMarkController extends HttpServlet {
 		System.out.println(member.getId());
         int contentId = jsonBody.get("contentId").getAsInt();
         bookMarkService.addBookMark(contentId, member.getId());
-        System.out.println("confirm");
 	}
 	
 }

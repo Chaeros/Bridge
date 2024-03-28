@@ -34,13 +34,7 @@ public class BookMarkServiceImpl implements BookMarkService {
 	}
 	@Override
 	public int removeBookMark(int attractionId) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public List<BookMarkResponse> displayBookMarkList(int memberId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return bookMarkDao.deleteBookMark(attractionId);
 	}
 	
 	public BookMarkAddRequest transferAttractionInfoToBookMarkRequest(AttractionInfoResponse attractionInfoResponse, String memberId) {
@@ -63,5 +57,9 @@ public class BookMarkServiceImpl implements BookMarkService {
 				attractionInfoResponse.getDescription(),
 				memberId
 				);
+	}
+	@Override
+	public List<BookMarkResponse> displayBookMarkList(String memberId) throws SQLException {
+		return bookMarkDao.selectBookMarkList(memberId);
 	}
 }

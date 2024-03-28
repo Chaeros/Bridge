@@ -16,5 +16,5 @@ public interface BookMarkService {
 	
 	public int addBookMark(int contentId, String memberId) throws SQLException;
 	public int removeBookMark(int attractionId) throws SQLException;
-	public List<BookMarkResponse> displayBookMarkList(int memberId) throws SQLException;
+	public List<BookMarkResponse> displayBookMarkList(String memberId) throws SQLException;
 }

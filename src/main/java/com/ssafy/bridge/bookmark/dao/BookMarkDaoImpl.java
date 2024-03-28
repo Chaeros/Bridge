@@ -2,11 +2,14 @@ package com.ssafy.bridge.bookmark.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.bridge.bookmark.dto.request.BookMarkAddRequest;
 import com.ssafy.bridge.bookmark.dto.response.BookMarkResponse;
+import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 import com.ssafy.bridge.util.DBUtil;
 
 public class BookMarkDaoImpl implements BookMarkDao {
@@ -59,9 +62,18 @@ public class BookMarkDaoImpl implements BookMarkDao {
 	}
 
 	@Override
-	public int deleteBookMark(int no) throws SQLException {
-		
-		return 0;
+	public int deleteBookMark(int myAttractionId) throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete from my_attraction		");
+		sql.append(" where my_attraction_id = ?		");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+
+		try (con; pstmt) {
+			int index = 0;
+			pstmt.setInt(++index, myAttractionId);
+			return pstmt.executeUpdate();
+		}
 	}
 
 	@Override
@@ -70,8 +82,43 @@ public class BookMarkDaoImpl implements BookMarkDao {
 	}
 
 	@Override
-	public List<BookMarkResponse> selectBookMarkList() throws SQLException {
-		return null;
+	public List<BookMarkResponse> selectBookMarkList(String memberId) throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("select *					");
+		sql.append("  from my_attraction		");
+		sql.append(" where member_id = ?		");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+
+		try (con; pstmt) {
+			int index = 0;
+			pstmt.setString(++index, memberId);
+			ResultSet rs = pstmt.executeQuery();
+			List<BookMarkResponse> list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new BookMarkResponse(
+						rs.getInt("my_attraction_id"),
+						rs.getInt("content_id"),
+						rs.getInt("content_type_id"),
+						rs.getString("title"),
+						rs.getString("addr1"),
+						rs.getString("addr2"),
+						rs.getString("zipcode"),
+						rs.getString("tel"),
+						rs.getString("firstImage"),
+						rs.getString("firstImage2"),
+						rs.getInt("readcount"),
+						rs.getInt("sido_code"),
+						rs.getInt("gugun_code"),
+						rs.getDouble("latitude"),
+						rs.getDouble("longitude"),
+						rs.getString("mlevel"),
+						rs.getString("description"),
+						rs.getString("member_id")
+						));
+			}
+			return list;
+		}
 	}
 
 }
