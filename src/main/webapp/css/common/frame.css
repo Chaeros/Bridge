@@ -10,20 +10,19 @@
     padding: 0;
     border-bottom: 3px solid;
     height: 84px;
-    /* text-align: center; */
+    display: flex;
+    justify-content: center;
 }
 
 .header-position{
-    /* width: 1200px; */
-    width: 85%;
-    margin: 0 auto;
+    width: 80%;
+    /* margin: 0 auto; */
 }
 
 .header-content{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0 130px;
     align-items: center;
 }
 

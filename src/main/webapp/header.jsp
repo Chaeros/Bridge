@@ -5,7 +5,7 @@
 %>
 <!DOCTYPE html>
 <head>
-	<link rel="stylesheet" href="./css/common/header.css" />
+	<link rel="stylesheet" href="./css/common/frame.css" />
 </head>
 <header class="header">
  	<div class="header-position">

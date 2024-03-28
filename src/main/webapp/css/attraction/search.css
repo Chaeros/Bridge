@@ -3,12 +3,12 @@
 .all-content {
   display: flex;
   justify-content: center;
-  margin: 10px 100px;
 }
 
 .left-content {
   display: flex;
   flex-direction: column;
+  width: 40%;
 }
 
 .subtitle {
@@ -20,12 +20,8 @@
 }
 
 .wrap {
-  width: 85%;
+  width: 80%;
   margin: 0 auto;
-}
-
-.left-content{
-  width: 30%;
 }
 
 .selectinfo {
@@ -85,10 +81,10 @@
 
 .right-content {
   margin: 20px;
+  width: 60%;
 }
 
 .detail-content {
-  width: 800px;
   height: 190px;
   margin: 5px 0;
   border: 1px solid;
