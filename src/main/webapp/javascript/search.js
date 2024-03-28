@@ -83,6 +83,7 @@
 	    console.log("??");
 	    destinationBox.innerHTML = "";
         itemList = [];
+        positions = [];
         data.forEach((item, index) => {
 			console.log(item);
           itemList.push(item);
@@ -108,13 +109,50 @@
               <p>`+item.addr1+`</p>
               `;
           }
-          // 아이템의 내용을 추가합니다.
 
           // destination 박스에 아이템을 추가합니다.
           //   newItem.setAttribute("id", `destination-${index}`); // id 설정
           newItem.setAttribute("id", "destination-"+index); // id 설정
           destinationBox.appendChild(newItem);
+          
+          options = {
+	          //지도를 생성할 때 필요한 기본 옵션
+	          center: new kakao.maps.LatLng(item.latitude, item.longitude), //지도의 중심좌표.
+	          level: 6, //지도의 레벨(확대, 축소 정도)
+	        };
+	        map = new kakao.maps.Map(container, options);
+            
+            positions.push({
+            title: item.title,
+            latlng: new kakao.maps.LatLng(item.latitude, item.longitude)
+        	});
+        	
+        	for (var i = 0; i < positions.length; i ++) {
+    
+			    /*// 마커 이미지의 이미지 크기 입니다
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    
+			    // 마커 이미지를 생성합니다    
+			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); */
+			    
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions[i].latlng, // 마커를 표시할 위치
+			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        //image : markerImage // 마커 이미지 
+			    });
+			}
+			
         });
+        
+        detailContentBox.innerHTML = "";
+        let detailItem = document.createElement("div");
+        detailItem.classList.add("detail");
+        detailItem.innerHTML = `
+          <p> 검색 결과 총 `+data.length+`건의 결과가 조회되었습니다. </p>
+        `;
+        detailContentBox.appendChild(detailItem);
 
         let count = itemList.length;
         console.log(count);
@@ -136,6 +174,8 @@
             newItem.innerHTML = `
               <h3>`+itemList[str[1]].title+`</h3>
               <p>`+itemList[str[1]].addr1+`</p>
+              <br>
+              <p>`+itemList[str[1]].description+`</p>
             `;
             newItem.setAttribute("id", "detail-"+str[1].contentid); // id 설정
             detailContentBox.appendChild(newItem);
@@ -261,6 +301,8 @@
             newItem.innerHTML = `
               <h3>`+itemList[str[1]].title+`</h3>
               <p>`+itemList[str[1]].addr1+`</p>
+              <br>
+              <p>`+itemList[str[1]].description+`</p>
             `;
             newItem.setAttribute("id", "detail-"+str[1].contentid); // id 설정
             detailContentBox.appendChild(newItem);

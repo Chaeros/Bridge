@@ -30,12 +30,14 @@ public class AttractionInfoDaoImpl implements AttractionInfoDao {
 	public List<AttractionInfoResponse> selectAttractionInfoList(AttractionInfoListRequest attractionInfoListRequest) throws SQLException {
 		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select *						");
-		sql.append("  from attraction_info			");
-		sql.append(" where sido_code = ? and		");
-		sql.append("  	   gugun_code = ? and		");
-		sql.append("	   content_type_id = ? and	");
-		sql.append("  	   title like ?				");
+		sql.append("    select *									");
+		sql.append("      from attraction_info						");
+		sql.append("inner join attraction_description 				");
+		sql.append("on attraction_info.content_id = attraction_description.content_id ");
+		sql.append("     where sido_code = ? and					");
+		sql.append("  	       gugun_code = ? and					");
+		sql.append("	       content_type_id = ? and				");
+		sql.append("  	       title like ?							");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		
 		try(con;pstmt){
@@ -62,7 +64,9 @@ public class AttractionInfoDaoImpl implements AttractionInfoDao {
 						rs.getInt("gugun_code"),
 						rs.getDouble("latitude"),
 						rs.getDouble("longitude"),
-						rs.getString("mlevel")));
+						rs.getString("mlevel"),
+						rs.getString("overview")
+						));
 			}
 			return list;
 		}
@@ -72,9 +76,11 @@ public class AttractionInfoDaoImpl implements AttractionInfoDao {
 	public AttractionInfoResponse selectAttractionInfo(int contentId) throws SQLException {
 		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select *			");
-		sql.append("  from attraction_info	");
-		sql.append(" where content_id = ?		");
+		sql.append("    select *			");
+		sql.append("      from attraction_info	");
+		sql.append("inner join attraction_description 				");
+		sql.append("attraction_info.content_id = attraction_description.content_id ");
+		sql.append("     where content_id = ?		");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		
 		try(con;pstmt){
@@ -97,7 +103,9 @@ public class AttractionInfoDaoImpl implements AttractionInfoDao {
 						rs.getInt("gugun_code"),
 						rs.getDouble("latitude"),
 						rs.getDouble("longitude"),
-						rs.getString("mlevel")));
+						rs.getString("mlevel"),
+						rs.getString("overview")
+						));
 			}
 			return null;
 		}

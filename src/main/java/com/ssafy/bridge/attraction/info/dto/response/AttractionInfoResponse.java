@@ -17,10 +17,11 @@ public class AttractionInfoResponse {
 	private double latitude;
 	private double longitude;
 	private String mlevel;
+	private String description;
 	
 	public AttractionInfoResponse(int contentId, int contentTypeId, String title, String addr1, String addr2,
 			String zipcode, String tel, String firstImage, String firstImage2, int readCount, int sidoCode,
-			int gugunCode, double latitude, double longitude, String mlevel) {
+			int gugunCode, double latitude, double longitude, String mlevel, String description) {
 		this.contentId = contentId;
 		this.contentTypeId = contentTypeId;
 		this.title = title;
@@ -36,8 +37,9 @@ public class AttractionInfoResponse {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.mlevel = mlevel;
+		this.description = description;
 	}
-	
+
 	public int getContentId() {
 		return contentId;
 	}
@@ -97,6 +99,10 @@ public class AttractionInfoResponse {
 	public String getMlevel() {
 		return mlevel;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
 
 	@Override
 	public String toString() {
@@ -104,7 +110,6 @@ public class AttractionInfoResponse {
 				+ title + ", addr1=" + addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", tel=" + tel
 				+ ", firstImage=" + firstImage + ", firstImage2=" + firstImage2 + ", readCount=" + readCount
 				+ ", sidoCode=" + sidoCode + ", gugunCode=" + gugunCode + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", mlevel=" + mlevel + "]";
+				+ longitude + ", mlevel=" + mlevel + ", description=" + description + "]";
 	}
-	
 }
