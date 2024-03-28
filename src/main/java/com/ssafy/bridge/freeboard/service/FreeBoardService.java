@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
+import com.ssafy.bridge.freeboard.dto.request.FreeBoardRemoveRequest;
 import com.ssafy.bridge.freeboard.dto.response.FreeBoardResponse;
 import com.ssafy.bridge.util.PageNavigation;
 
@@ -18,7 +19,7 @@ public interface FreeBoardService {
 
 	public int modifyFreeBoard(FreeBoardModifyRequest board) throws SQLException;
 
-	public int removeFreeBoard(int no) throws SQLException;
+	public int removeFreeBoard(FreeBoardRemoveRequest board) throws SQLException;
 
 	public FreeBoardResponse searchByNoFreeBoard(int no) throws SQLException;
 

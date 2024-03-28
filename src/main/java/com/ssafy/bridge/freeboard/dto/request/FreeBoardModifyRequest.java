@@ -4,14 +4,16 @@ public class FreeBoardModifyRequest {
 	private int no;
 	private String title;
 	private String content;
+	private String id;
 
 	public FreeBoardModifyRequest() {
 	}
 
-	public FreeBoardModifyRequest(int no, String title, String content) {
+	public FreeBoardModifyRequest(int no, String title, String content, String id) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
+		this.id = id;
 	}
 
 	public int getNo() {
@@ -24,6 +26,10 @@ public class FreeBoardModifyRequest {
 
 	public String getContent() {
 		return content;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	@Override

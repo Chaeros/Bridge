@@ -39,10 +39,13 @@ nav a {
 		</div>
 		<div class="link">
 			<br> <a href="${pageContext.request.contextPath}/boardindex.jsp">메인
-				페이지</a> <br> <a
-				href="${pageContext.request.contextPath}/freeboard?action=remove&no=${board.no}">삭제하기</a>
-			<a
-				href="${pageContext.request.contextPath}/freeboard?action=modifyForm&no=${board.no}">수정하기</a>
+				페이지</a> <br>
+			<c:choose>
+				<c:when test="${board.writer eq member.nickName}">
+					<a href="${pageContext.request.contextPath}/freeboard?action=remove&no=${board.no}">삭제하기</a>
+					<a href="${pageContext.request.contextPath}/freeboard?action=modifyForm&no=${board.no}">수정하기</a>
+				</c:when>
+			</c:choose>
 		</div>
 	</main>
 	<jsp:include page="/footer.jsp" />
