@@ -79,8 +79,8 @@ public class AttractionInfoDaoImpl implements AttractionInfoDao {
 		sql.append("    select *			");
 		sql.append("      from attraction_info	");
 		sql.append("inner join attraction_description 				");
-		sql.append("attraction_info.content_id = attraction_description.content_id ");
-		sql.append("     where content_id = ?		");
+		sql.append("on attraction_info.content_id = attraction_description.content_id ");
+		sql.append("     where attraction_info.content_id = ?		");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		
 		try(con;pstmt){

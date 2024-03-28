@@ -107,20 +107,21 @@
 		console.log(item.firstImage);
           if (item.firstImage != "") {
             newItem.innerHTML = `
-            <h3>`+item.title+`</h3>
+            <h3>`+item.title+`<button>★</button></h3>
             <p>`+item.addr1+`</p>
             <img src=`+item.firstImage+` width=300px>
             `;
           } else if (item.firstImage2 != "") {
             newItem.innerHTML = `
-            <h3>`+item.title+`</h3>
+            <h3>`+item.title+`<button>★</button></h3>
             <p>`+item.addr1+`</p>
             <img src=`+item.firstImage2+` width=300px>
             `;
           } else {
         	  newItem.innerHTML = `
-              <h3>`+item.title+`</h3>
+              <h3>`+item.title+`<button>★</button></h3>
               <p>`+item.addr1+`</p>
+              <img src=""/>
               `;
           }
 
@@ -137,8 +138,12 @@
 	        map = new kakao.maps.Map(container, options);
             
             positions.push({
-            title: item.title,
-            latlng: new kakao.maps.LatLng(item.latitude, item.longitude)
+            	title: item.title,
+            	addr : item.addr1,
+            	description : item.description,
+            	latlng: new kakao.maps.LatLng(item.latitude, item.longitude),
+            	latitude : item.latitude,
+            	longitude : item.longitude
         	});
         	
         	for (var i = 0; i < positions.length; i ++) {
@@ -158,11 +163,56 @@
 			    });
 			    
 			    var infowindow = new kakao.maps.InfoWindow({
-			        content: positions[i].content // 인포윈도우에 표시할 내용
+			        content: "<div><h3>"+positions[i].title+"</h3></div><p>"+positions[i].addr+"</p>"
 			    });
 			    
 			    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+    			kakao.maps.event.addListener(marker, 'click', (function (marker, i) {
+			        return function () {
+			            console.log("Marker clicked");
+			            console.log("Marker title: " + positions[i].title);
+			            console.log("Marker address: " + positions[i].addr);
+			            console.log("Marker description: " + positions[i].description);
+			            // 여기에 클릭된 마커의 정보를 사용하는 코드를 추가할 수 있습니다.
+			            // 예를 들어, 해당 마커의 정보를 화면에 표시하거나 다른 동작을 수행할 수 있습니다.
+			            detailContentBox.innerHTML = "";
+			            let newItem = document.createElement("div");
+			            newItem.classList.add("detail");
+			            newItem.innerHTML = `
+			              <h3>` + positions[i].title + `</h3>
+			              <p>` + positions[i].addr + `</p>
+			              <br>
+			              <p>` + positions[i].description + `</p>
+			            `;
+			            detailContentBox.appendChild(newItem);
+			            // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+			            selectedMarker = marker;
+			            
+			            options = {
+			              //지도를 생성할 때 필요한 기본 옵션
+			              center: new kakao.maps.LatLng(positions[i].latitude, positions[i].longitude), //지도의 중심좌표.
+			              level: 1, //지도의 레벨(확대, 축소 정도)
+			            };
+			            map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			
+			            // 마커가 표시될 위치입니다
+			            markerPosition = new kakao.maps.LatLng(
+			              positions[i].latitude,
+			              positions[i].longitude
+			            );
+			
+			            // 마커를 생성합니다
+			            marker = new kakao.maps.Marker({
+			              position: markerPosition,
+			            });
+			
+			            // 마커가 지도 위에 표시되도록 설정합니다
+			            marker.setMap(map);
+			        };
+			    })(marker, i));
     			kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+			
+				
 			}
 			
         });
@@ -218,6 +268,13 @@
             marker = new kakao.maps.Marker({
               position: markerPosition,
             });
+            
+            var infowindow = new kakao.maps.InfoWindow({
+		        content: "<div><h3>"+itemList[str[1]].title+"</h3></div><p>"+itemList[str[1]].addr1+"</p>"
+		    });
+		    
+		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+			kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);

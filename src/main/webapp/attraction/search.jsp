@@ -26,7 +26,7 @@
     <div class="wrap">
       <div class="all-content">
         <div class="left-content">
-          <div class="subtitle">지역별 관광 정보</div>
+          <div class="subtitle">지역별 관광 정보<button onclick="test()">★</button></div>
           <div class="selectinfo">
             <div>
               <div class="selectinfo-title">지역</div>
@@ -81,7 +81,7 @@
           <div class="destinations"></div>
         </div>
         <div class="right-content">
-          <div id="map" style="width: 800px; height: 500px"></div>
+          <div class="map" id="map" style="width: 100%; height: 500px"></div>
           <div class="detail-content"></div>
         </div>
       </div>
@@ -91,6 +91,28 @@
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=40760ed76b3f09175bb64a80868ef451"
     ></script>
+    
+    <script>
+    	function test(){
+   			console.log("testFetch");
+   			fetch("http://localhost:8080/bridge/bookmark?action=add", {
+   			    method: 'POST', // 요청 메서드를 POST로 설정합니다.
+   			    headers: {
+   			        'Content-Type': 'application/json' // 요청 헤더에 JSON 형식의 데이터를 전송한다고 명시합니다.
+   			    },
+   			    body: JSON.stringify({ // 요청 본문에 JSON 형식의 데이터를 문자열로 변환하여 전송합니다.
+   			        contentId: 125266
+   			    })
+   			})
+   			.then((res) => res.json())
+   			.then((data) => {
+   			    console.log(data);
+   			})
+   			.catch((error) => {
+   			    console.error('Error fetching data:', error);
+   			});
+    	}
+    </script>
 
     <script src="../javascript/search.js"></script>
     <footer class="footer"></footer>
