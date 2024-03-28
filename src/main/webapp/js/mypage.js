@@ -54,7 +54,7 @@ let fix_btn = document.getElementById("fix");
 
 fix_btn.addEventListener('click', function() {
 	console.log("수정 버튼")
-	window.location.href = "/bridge/member?action=modify"
+	window.location.href = "/bridge/member?action=modifyForm"
 });
 
 let drawal = document.getElementById("drawal");

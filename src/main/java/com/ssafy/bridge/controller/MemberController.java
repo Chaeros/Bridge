@@ -53,18 +53,30 @@ public class MemberController extends HttpServlet {
 			case "removeForm":
 				removeFormMember(request, response);
 				break;
+			case "logout":
+				logoutMember(request, response);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void modifyFormMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	private void logoutMember(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
-		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		session.removeAttribute("member");
+
+		response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+	}
+
+	private void modifyFormMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		hasMemberSection(request, response);
+
+		HttpSession session = request.getSession();
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 		request.setAttribute("id", member);
 
-		request.getRequestDispatcher("/member/remove.jsp").forward(request, response);
+		request.getRequestDispatcher("/member/modify.jsp").forward(request, response);
 
 	}
 
@@ -74,10 +86,13 @@ public class MemberController extends HttpServlet {
 	}
 
 	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		memberService.addMember(new MemberAddRequest(request.getParameter("id"), request.getParameter("password"),
-				request.getParameter("name"), request.getParameter("nickName"), request.getParameter("region"),
-				request.getParameter("email")));
+		int res = memberService.addMember(new MemberAddRequest(request.getParameter("id"),
+				request.getParameter("password"), request.getParameter("name"), request.getParameter("nickName"),
+				request.getParameter("region"), request.getParameter("email")));
 
+		if (res == -1) {
+			response.sendRedirect(request.getContextPath() + "/member/signup.jsp");
+		}
 		response.sendRedirect(request.getContextPath() + "/member/login.jsp");
 	}
 
@@ -86,6 +101,8 @@ public class MemberController extends HttpServlet {
 	}
 
 	private void searchMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		hasMemberSection(request, response);
+		
 		MemberLoginResponse member = (MemberLoginResponse) request.getSession().getAttribute("member");
 
 		request.setAttribute("member", memberService.searchMember(member.getId()));
@@ -94,30 +111,53 @@ public class MemberController extends HttpServlet {
 
 	private void loginMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		MemberLoginResponse member = memberService
+				.loginMember(new MemberLoginRequest(request.getParameter("id"), request.getParameter("password")));
 
-		session.setAttribute("member", memberService
-				.loginMember(new MemberLoginRequest(request.getParameter("id"), request.getParameter("password"))));
+		if (member == null) {
+			response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+		}
 
+		session.setAttribute("member", member);
 		response.sendRedirect(request.getContextPath() + "/boardindex.jsp");
 
 	}
 
 	private void modifyMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		hasMemberSection(request, response);
+		
 		HttpSession session = request.getSession();
-		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 
-		memberService.modifyMember(new MemberModifyRequest(member.getId(), request.getParameter("password"),
+		int res = memberService.modifyMember(new MemberModifyRequest(member.getId(), request.getParameter("password"),
 				request.getParameter("name"), request.getParameter("nickName"), request.getParameter("region"),
 				request.getParameter("email")));
-		response.sendRedirect(request.getContextPath() + "/member?action=modify");
+
+		if (res == -1) {
+			response.sendRedirect(request.getContextPath() + "/member/modify.jsp");
+		}
+		response.sendRedirect(request.getContextPath() + "/member?action=search");
 	}
 
 	private void removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		hasMemberSection(request, response);
+		
 		HttpSession session = request.getSession();
-		MemberLoginRequest member = (MemberLoginRequest) session.getAttribute("member");
+		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 
-		memberService.removeMember(new MemberDeleteRequest(member.getId(), request.getParameter("password")));
-		response.sendRedirect(request.getContextPath() + "/boardindex.jsp");
+		int res = memberService.removeMember(new MemberDeleteRequest(member.getId(), request.getParameter("password")));
 
+		if (res == 0) {
+			response.sendRedirect(request.getContextPath() + "/member/remove.jsp");
+		}
+		response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+
+	}
+
+	private void hasMemberSection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("member") == null) {
+			response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+		}
 	}
 }
