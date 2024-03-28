@@ -43,17 +43,23 @@ public class AttractionInfoController extends HttpServlet {
 		try {
 			switch(action) {
 			case "list":
-				System.out.println("list");
 				displayAttractionInfoList(request,response);
 				break;
 			case "search":
 				searchAttractionInfo(request,response);
+				break;
+			case "main":
+				moveAttractionInfoPage(request,response);
 				break;
 			}
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();
 		}
+	}
+	
+	private void moveAttractionInfoPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/attraction/search.jsp").forward(request, response);
 	}
 	
 	private void searchAttractionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
