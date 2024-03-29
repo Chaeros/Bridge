@@ -10,7 +10,7 @@
 <header class="header">
  	<div class="header-position">
 		<div class="header-content">
-			<h1 class="title"><a href="">Bridge</a></h1>
+			<h1 class="title"><a href="${pageContext.request.contextPath}/attractionInfo?action=main">Bridge</a></h1>
 			<div class="nav">	
 				<a href="${pageContext.request.contextPath}/attractionInfo?action=main">관광지 찾기</a>
 				<a href="${pageContext.request.contextPath}/freeboard?action=list">게시판</a>

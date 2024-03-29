@@ -68,6 +68,7 @@ public class BookMarkController extends HttpServlet {
 		
         bookMarkService.removeBookMark(myAttractionId);
 	}
+	
 	private void listBookMark(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		HttpSession session = request.getSession();
 		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");

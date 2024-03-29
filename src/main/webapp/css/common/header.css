@@ -34,8 +34,15 @@
     margin: 0;
 }
 
+.header-content > .title > a{
+    color: inherit; /* 상위 요소의 색상을 상속받음 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
 .header-content > .nav > a{
     font-size: 22px;
     font-weight: bold;
     margin: auto 30px;
+    color: inherit; /* 상위 요소의 색상을 상속받음 */
+    text-decoration: none; /* 밑줄 제거 */
 }
