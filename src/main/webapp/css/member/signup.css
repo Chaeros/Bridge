@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 * {
     margin: 0;
@@ -49,7 +49,7 @@
 
  .input-form-content label {
     flex: 1;
-    text-align: left; /* º¯°æµÈ ºÎºĞ: ¿ŞÂÊ Á¤·Ä */
+    text-align: left; /* ë³€ê²½ëœ ë¶€ë¶„: ì™¼ìª½ ì •ë ¬ */
     margin-right: 10px;
 }
 
@@ -63,14 +63,14 @@
     width: 200px;
     height: 50px;
     margin-top: 20px;
-    border-radius: 5px; /* ¸ğ¼­¸® µÕ±Û°Ô ¼³Á¤ */
-    cursor: pointer; /* ¸¶¿ì½º Ä¿¼­¸¦ Æ÷ÀÎÅÍ·Î º¯°æ */
+    border-radius: 5px; /* ëª¨ì„œë¦¬ ë‘¥ê¸€ê²Œ ì„¤ì • */
+    cursor: pointer; /* ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ í¬ì¸í„°ë¡œ ë³€ê²½ */
     font-size: 15px;
     font-weight: bold;
     background-color: white;
 }
   
 .submit:hover {
-    background-color: #0056b3; /* ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ÀÇ ¹è°æ»ö º¯°æ */
+    background-color: #0056b3; /* ë§ˆìš°ìŠ¤ë¥¼ ì˜¬ë ¸ì„ ë•Œì˜ ë°°ê²½ìƒ‰ ë³€ê²½ */
     color: white;
 }
