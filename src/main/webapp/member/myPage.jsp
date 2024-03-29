@@ -23,7 +23,7 @@
 		</section>
 		<div class="profile">
 			<div class="profile_img">
-				<img id="preview" src="../img/profile-img.jpg" alt="profile-img">
+				<img id="preview" src="${pageContext.request.contextPath}/img/profile-img.jpg" alt="profile-img">
 				<input type="file" accept="image/*" onchange="readURL(this);">
 			</div>
 			<div class="p_component">
