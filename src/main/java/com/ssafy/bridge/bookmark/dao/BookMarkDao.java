@@ -18,6 +18,8 @@ public interface BookMarkDao {
 	 */
 	public int insertBookMark(BookMarkAddRequest board) throws SQLException;
 	public int deleteBookMark(int attractionId) throws SQLException;
+	public int deleteByContentIdBookMark(int contentId) throws SQLException;
 	public BookMarkResponse selectByNoBookMark(int no) throws SQLException;
 	public List<BookMarkResponse> selectBookMarkList(String memberId) throws SQLException;
+	public boolean isInBookMark(int contentId) throws SQLException;
 }

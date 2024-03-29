@@ -25,16 +25,19 @@ public class GugunDaoImpl implements GugunDao {
 	}
 	
 	@Override
-	public List<GugunResponse> selectGugunList() throws SQLException {
+	public List<GugunResponse> selectGugunList(int sidoCode) throws SQLException {
 		Connection con = dbUtil.getConnection();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select *		");
-		sql.append("from gugun		");
+		sql.append("select *			");
+		sql.append("from gugun			");
+		sql.append("where sido_code = ?	");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		
 		try(con;pstmt){
-			List<GugunResponse> guguns = new ArrayList<>();
+			int index = 0;
+			pstmt.setInt(++index, sidoCode);
 			ResultSet rs = pstmt.executeQuery();
+			List<GugunResponse> guguns = new ArrayList<>();
 			while ( rs.next() ) {
 				guguns.add(new GugunResponse(
 						rs.getInt("gugun_code"),

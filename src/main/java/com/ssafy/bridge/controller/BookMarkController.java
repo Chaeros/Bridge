@@ -50,10 +50,49 @@ public class BookMarkController extends HttpServlet {
 			case "remove":
 				removeBookMark(request,response);
 				break;
+			case "removeByContentId":
+				removeByContentIdBookMark(request,response);
+				break;
+			case "isIn":
+				isInBookMark(request,response);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void removeByContentIdBookMark(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+		BufferedReader reader = request.getReader();
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+		JsonObject jsonBody = JsonParser.parseString(sb.toString()).getAsJsonObject();
+		int contentId = jsonBody.get("contentId").getAsInt();
+		
+        bookMarkService.removeByContentIdBookMark(contentId);
+        System.out.println(contentId +" , remove");
+	}
+	
+	private void isInBookMark(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+		BufferedReader reader = request.getReader();
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+		JsonObject jsonBody = JsonParser.parseString(sb.toString()).getAsJsonObject();
+		int contentId = jsonBody.get("contentId").getAsInt();
+		
+		boolean isInBookMark = bookMarkService.searchBookMark(contentId);
+		
+		response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    
+	    String attractionInfoJson = objectMapper.writeValueAsString(isInBookMark);
+	    response.getWriter().write(attractionInfoJson);
 	}
 	
 	private void removeBookMark(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -73,7 +112,8 @@ public class BookMarkController extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
 		List<BookMarkResponse> bookMarks = bookMarkService.displayBookMarkList(member.getId());
-        
+        System.out.println(bookMarks.size());
+		
         response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
 	    

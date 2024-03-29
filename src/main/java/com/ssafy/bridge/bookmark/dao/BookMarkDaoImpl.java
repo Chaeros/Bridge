@@ -120,5 +120,38 @@ public class BookMarkDaoImpl implements BookMarkDao {
 			return list;
 		}
 	}
+	@Override
+	public boolean isInBookMark(int contentId) throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("select *					");
+		sql.append("  from my_attraction		");
+		sql.append(" where content_id = ?		");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+
+		try (con; pstmt) {
+			int index = 0;
+			pstmt.setInt(++index, contentId);
+			ResultSet rs = pstmt.executeQuery();
+			if ( rs.next() ) {
+				return true;
+			}
+			return false;
+		}
+	}
+	@Override
+	public int deleteByContentIdBookMark(int contentId) throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete from my_attraction		");
+		sql.append(" where content_id = ?		");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+
+		try (con; pstmt) {
+			int index = 0;
+			pstmt.setInt(++index, contentId);
+			return pstmt.executeUpdate();
+		}
+	}
 
 }

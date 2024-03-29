@@ -12,5 +12,5 @@ public interface GugunDao {
 	 * delete : 삭제
 	 * select : 조회
 	 */
-	public List<GugunResponse> selectGugunList() throws SQLException;
+	public List<GugunResponse> selectGugunList(int sidoCode) throws SQLException;
 }

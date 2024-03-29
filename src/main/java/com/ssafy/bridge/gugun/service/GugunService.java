@@ -14,5 +14,5 @@ public interface GugunService {
 	 * search : 검색
 	 * display : 출력
 	 */
-	public List<GugunResponse> displayGugunList() throws SQLException;
+	public List<GugunResponse> displayGugunList(int sidoCode) throws SQLException;
 }

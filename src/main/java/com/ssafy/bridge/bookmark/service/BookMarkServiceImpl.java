@@ -62,4 +62,13 @@ public class BookMarkServiceImpl implements BookMarkService {
 	public List<BookMarkResponse> displayBookMarkList(String memberId) throws SQLException {
 		return bookMarkDao.selectBookMarkList(memberId);
 	}
+	@Override
+	public boolean searchBookMark(int contentId) throws SQLException {
+		return bookMarkDao.isInBookMark(contentId);
+	}
+	
+	@Override
+	public int removeByContentIdBookMark(int contentId) throws SQLException {
+		return bookMarkDao.deleteByContentIdBookMark(contentId);
+	}
 }

@@ -22,8 +22,8 @@ public class GugunServiceImpl implements GugunService {
 	}
 	
 	@Override
-	public List<GugunResponse> displayGugunList() throws SQLException {
-		return gugunDao.selectGugunList();
+	public List<GugunResponse> displayGugunList(int sidoCode) throws SQLException {
+		return gugunDao.selectGugunList(sidoCode);
 	}
 	
 }
