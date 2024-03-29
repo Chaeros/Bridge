@@ -6,16 +6,16 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="../css/header.css" />
-<link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/member/signup.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/signup.css" />
 <title>Document</title>
 </head>
 
 <body>
 	<main>
 		<div class="all-form">
-			<div class="logo">Bridge</div>
+			<div class="logo" id="logo">Bridge</div>
 			<div class="title">회원가입</div>
 			<form method="post"
 				action="${pageContext.request.contextPath}/member">
@@ -56,7 +56,7 @@
 			</form>
 		</div>
 	</main>
-	<script src="./js/signup.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/javascript/signup.js" type="text/javascript"></script>
 
 </body>
 

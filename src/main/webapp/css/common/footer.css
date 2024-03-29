@@ -1,6 +1,55 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
-.footer{
-    height: 200px;
-    background-color: darkgray;
+.footer {
+	height: 200px;
+	background-color: darkgray;
+	display: flex;
+	justify-content: center;
+	font-size: 10px;
+}
+
+img {
+	width: 20px;
+	height: 20px;
+}
+
+.left {
+	width: 20%;
+	height: 70%;
+	margin: 30px;
+	display: flex;
+	margin: 30px;
+	margin: 30px;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.content {
+	display: flex;
+	margin: 10px;
+}
+
+.content>p {
+	width: 80%;
+	margin-left: 20px;
+}
+
+.right {
+	width: 20%;
+	height: 70%;
+	margin: 30px;
+	display: flex;
+	margin: 30px;
+	margin: 30px;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.icons {
+	margin: 10px 0;
+	width: 90%;
+}
+
+.icons>img {
+	margin-right: 7px;
 }
