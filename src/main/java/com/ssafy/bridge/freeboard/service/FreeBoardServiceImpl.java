@@ -48,6 +48,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
 	@Override
 	public FreeBoardResponse searchByNoFreeBoard(int no) throws SQLException {
+		freeBoardDao.updateHit(no);
 		return freeBoardDao.selectByNoFreeBoard(no);
 	}
 
