@@ -1,5 +1,7 @@
 package com.ssafy.bridge.member;
 
+import java.util.Optional;
+
 import com.ssafy.bridge.member.dto.request.MemberAddRequest;
 import com.ssafy.bridge.member.dto.request.MemberDeleteRequest;
 import com.ssafy.bridge.member.dto.request.MemberLoginRequest;
@@ -24,7 +26,7 @@ public interface MemberService {
 	
 	boolean isDuplicateByNickName(String nickName) throws Exception;
 
-	MemberLoginResponse loginMember(MemberLoginRequest member) throws Exception;
+	Optional<MemberLoginResponse> loginMember(MemberLoginRequest member) throws Exception;
 
 	int modifyMember(MemberModifyRequest member) throws Exception;
 

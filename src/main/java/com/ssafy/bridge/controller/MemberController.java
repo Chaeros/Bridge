@@ -112,7 +112,7 @@ public class MemberController extends HttpServlet {
 	private void loginMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		MemberLoginResponse member = memberService
-				.loginMember(new MemberLoginRequest(request.getParameter("id"), request.getParameter("password")));
+				.loginMember(new MemberLoginRequest(request.getParameter("id"), request.getParameter("password"))).get();
 
 		if (member == null) {
 			response.sendRedirect(request.getContextPath() + "/member/login.jsp");

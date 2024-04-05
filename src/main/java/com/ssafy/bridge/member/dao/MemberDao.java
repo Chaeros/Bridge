@@ -1,6 +1,7 @@
 package com.ssafy.bridge.member.dao;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 import com.ssafy.bridge.member.dto.request.MemberAddRequest;
 import com.ssafy.bridge.member.dto.request.MemberDeleteRequest;
@@ -27,4 +28,6 @@ public interface MemberDao {
 	int deleteMember(MemberDeleteRequest member) throws SQLException;
 
 	boolean isDuplicateById(String id) throws SQLException;
+	
+	Optional<String> selectHashById(String id) throws SQLException;
 }

@@ -17,4 +17,13 @@ public class MemberLoginRequest {
 	public String getPassword() {
 		return password;
 	}
+	
+	public void changePasswordToEncryptHash(String hash) {
+		this.password = hash;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberLoginRequest [id=" + id + ", password=" + password + "]";
+	}
 }

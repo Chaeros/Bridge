@@ -41,4 +41,8 @@ public class MemberAddRequest {
 	public String getEmail() {
 		return email;
 	}
+	
+	public void changePasswordToEncryptHash(String hash) {
+		this.password = hash;
+	}
 }

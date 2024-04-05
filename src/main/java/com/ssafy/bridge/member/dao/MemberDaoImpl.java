@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import com.ssafy.bridge.member.dto.request.MemberAddRequest;
 import com.ssafy.bridge.member.dto.request.MemberDeleteRequest;
@@ -167,5 +168,25 @@ public class MemberDaoImpl implements MemberDao {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Optional<String> selectHashById(String id) throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("select password from member ");
+		sql.append(" where id = ?");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+
+		try (con; pstmt) {
+			int index = 0;
+			pstmt.setString(++index, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("check : " + rs.getString("password"));
+				return Optional.ofNullable(rs.getString("password"));
+			}
+		}
+		return null;
 	}
 }
