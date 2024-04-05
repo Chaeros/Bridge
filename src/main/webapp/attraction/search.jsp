@@ -16,7 +16,7 @@
     <div class="wrap">
       <div class="all-content">
         <div class="left-content">
-          <div class="subtitle">지역별 관광 정보<button onclick="getMyBookMarkList()">★</button></div>
+          <div class="subtitle">지역별 관광 정보<button onclick="getMyBookMarkList()">★</button><button onclick="getOptimalRouteMyBookMarkList()">▶</button></div>
           <div class="selectinfo">
             <div>
               <div class="selectinfo-title">지역</div>

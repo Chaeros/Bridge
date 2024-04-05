@@ -56,7 +56,7 @@ public class BookMarkController extends HttpServlet {
 			case "isIn":
 				isInBookMark(request,response);
 				break;
-			case "optimalRout":
+			case "optimalRoute":
 				optimalRoutBookMark(request,response);
 				break;
 			}
@@ -142,7 +142,7 @@ public class BookMarkController extends HttpServlet {
 	private void optimalRoutBookMark(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		HttpSession session = request.getSession();
 		MemberLoginResponse member = (MemberLoginResponse) session.getAttribute("member");
-		List<BookMarkResponse> bookMarks = bookMarkService.displayBookMarkList(member.getId());
+		List<BookMarkResponse> bookMarks = bookMarkService.optimalRouteBookMarkList(member.getId());
 		
         response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");

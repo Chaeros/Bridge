@@ -2,8 +2,11 @@ package com.ssafy.bridge.bookmark.service;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Queue;
 
 import com.ssafy.bridge.attraction.info.dao.AttractionInfoDao;
 import com.ssafy.bridge.attraction.info.dao.AttractionInfoDaoImpl;
@@ -80,7 +83,7 @@ public class BookMarkServiceImpl implements BookMarkService {
 	public List<BookMarkResponse> optimalRouteBookMarkList(String memberId) throws SQLException {
 		List<BookMarkResponse> bookMarkResponses = bookMarkDao.selectBookMarkList(memberId);
 		
-		class Node{
+		class Node implements Comparable<Node>{
 			int start;
 			int end;
 			double distance;
@@ -98,16 +101,17 @@ public class BookMarkServiceImpl implements BookMarkService {
 			public double getDistance() {
 				return distance;
 			}
+			@Override
+			public int compareTo(Node o) {
+				if ( this.distance < o.distance ) return -1;
+				return 1;
+			}
 		}
 		
-		List<Node> nodes = new ArrayList<>();
-		
 		int listSize = bookMarkResponses.size();
-		parent = new int[listSize];
 		List<List<Node>> list = new ArrayList<>();
 		for ( int i = 0 ; i < listSize ; ++i ) {
 			list.add(new ArrayList());
-			parent[i] = i;
 		}
 		
 		for ( int i = 0 ; i < listSize ; ++i ) {
@@ -118,8 +122,42 @@ public class BookMarkServiceImpl implements BookMarkService {
 					list.get(i).add(new Node(i,j,calculateDistance(position1.getLatitude(), position1.getLongitude(), position2.getLatitude(), position2.getLongitude())));
 				}
 			}
+			Collections.sort(list.get(i));
 		}
-		return null;
+		
+		List<Integer> resultList = new ArrayList<>();
+		int minDistance = Integer.MAX_VALUE;
+		for ( int i = 0 ; i < listSize ; ++i ) {
+			List<Integer> tempList = new ArrayList<>();
+			boolean visited[] = new boolean[listSize];
+			Queue<Integer> q = new ArrayDeque<>();
+			q.offer(i);
+			visited[i] = true;
+			int distanceSum = 0;
+			tempList.add(i);
+			while( !q.isEmpty() ) {
+				int now = q.poll();
+				for ( Node node : list.get(now) ) {
+					if ( !visited[node.getEnd()] ) {
+						visited[node.getEnd()] = true;
+						q.offer(node.getEnd());
+						distanceSum += node.getDistance();
+						tempList.add(node.end);
+						break;
+					}
+				}
+			}
+			if ( minDistance > distanceSum ) {
+				minDistance = distanceSum;
+				resultList = tempList;
+				System.out.println(minDistance);
+			}
+		}
+		List<BookMarkResponse> result = new ArrayList<>();
+		for ( int x : resultList ) {
+			result.add(bookMarkResponses.get(x));
+		}
+		return result;
 	}
 	
     public static double calculateDistance(BigDecimal lat1, BigDecimal lon1, BigDecimal lat2, BigDecimal lon2) {
