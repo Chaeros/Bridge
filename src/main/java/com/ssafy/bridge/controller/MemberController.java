@@ -116,9 +116,11 @@ public class MemberController extends HttpServlet {
 
 		if (member == null) {
 			response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+			return;
 		}
 
 		session.setAttribute("member", member);
+		System.out.println(session.getAttribute("member"));
 		response.sendRedirect(request.getContextPath()+"/attractionInfo?action=main");
 
 	}

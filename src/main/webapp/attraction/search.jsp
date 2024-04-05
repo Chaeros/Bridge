@@ -82,7 +82,7 @@
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=40760ed76b3f09175bb64a80868ef451"
     ></script>
-
+    <script src="${pageContext.request.contextPath}/javascript/key.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/search.js"></script>
   </body>
 </html>
