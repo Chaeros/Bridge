@@ -19,4 +19,5 @@ public interface BookMarkService {
 	public int removeByContentIdBookMark(int contentId) throws SQLException;
 	public List<BookMarkResponse> displayBookMarkList(String memberId) throws SQLException;
 	public boolean searchBookMark(int contentId) throws SQLException;
+	public List<BookMarkResponse> optimalRouteBookMarkList(String memberId) throws SQLException;
 }

@@ -1,6 +1,8 @@
 package com.ssafy.bridge.bookmark.service;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.bridge.attraction.info.dao.AttractionInfoDao;
@@ -71,4 +73,72 @@ public class BookMarkServiceImpl implements BookMarkService {
 	public int removeByContentIdBookMark(int contentId) throws SQLException {
 		return bookMarkDao.deleteByContentIdBookMark(contentId);
 	}
+	
+	public static int parent[];
+	
+	@Override
+	public List<BookMarkResponse> optimalRouteBookMarkList(String memberId) throws SQLException {
+		List<BookMarkResponse> bookMarkResponses = bookMarkDao.selectBookMarkList(memberId);
+		
+		class Node{
+			int start;
+			int end;
+			double distance;
+			public Node(int start, int end, double distance) {
+				this.start = start;
+				this.end = end;
+				this.distance = distance;
+			}
+			public int getStart() {
+				return start;
+			}
+			public int getEnd() {
+				return end;
+			}
+			public double getDistance() {
+				return distance;
+			}
+		}
+		
+		List<Node> nodes = new ArrayList<>();
+		
+		int listSize = bookMarkResponses.size();
+		parent = new int[listSize];
+		List<List<Node>> list = new ArrayList<>();
+		for ( int i = 0 ; i < listSize ; ++i ) {
+			list.add(new ArrayList());
+			parent[i] = i;
+		}
+		
+		for ( int i = 0 ; i < listSize ; ++i ) {
+			for ( int j = 0 ; j < listSize ; ++j ) {
+				if ( i != j ) {
+					BookMarkResponse position1 = bookMarkResponses.get(i);
+					BookMarkResponse position2 = bookMarkResponses.get(j);
+					list.get(i).add(new Node(i,j,calculateDistance(position1.getLatitude(), position1.getLongitude(), position2.getLatitude(), position2.getLongitude())));
+				}
+			}
+		}
+		return null;
+	}
+	
+    public static double calculateDistance(BigDecimal lat1, BigDecimal lon1, BigDecimal lat2, BigDecimal lon2) {
+        double lat1Rad = Math.toRadians(lat1.doubleValue());
+        double lon1Rad = Math.toRadians(lon1.doubleValue());
+        double lat2Rad = Math.toRadians(lat2.doubleValue());
+        double lon2Rad = Math.toRadians(lon2.doubleValue());
+
+        final double R = 6371.0;
+
+        double dlon = lon2Rad - lon1Rad;
+        double dlat = lat2Rad - lat1Rad;
+
+        double a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(lat1Rad) * Math.cos(lat2Rad) * Math.pow(Math.sin(dlon / 2), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c;
+    }
+    
+    
 }

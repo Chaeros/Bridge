@@ -110,8 +110,8 @@ public class BookMarkDaoImpl implements BookMarkDao {
 						rs.getInt("readcount"),
 						rs.getInt("sido_code"),
 						rs.getInt("gugun_code"),
-						rs.getDouble("latitude"),
-						rs.getDouble("longitude"),
+						rs.getBigDecimal("latitude"),
+						rs.getBigDecimal("longitude"),
 						rs.getString("mlevel"),
 						rs.getString("description"),
 						rs.getString("member_id")

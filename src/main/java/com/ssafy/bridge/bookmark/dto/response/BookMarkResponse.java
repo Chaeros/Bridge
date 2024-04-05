@@ -1,5 +1,7 @@
 package com.ssafy.bridge.bookmark.dto.response;
 
+import java.math.BigDecimal;
+
 public class BookMarkResponse {
 	private int myAttractionId;
 	private int contentId;
@@ -14,15 +16,15 @@ public class BookMarkResponse {
 	private int readCount;
 	private int sidoCode;
 	private int gugunCode;
-	private double latitude;
-	private double longitude;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	private String mlevel;
 	private String description;
 	private String memberId;
 	
 	public BookMarkResponse(int myAttractionId, int contentId, int contentTypeId, String title, String addr1,
 			String addr2, String zipcode, String tel, String firstImage, String firstImage2, int readCount,
-			int sidoCode, int gugunCode, double latitude, double longitude, String mlevel, String description,
+			int sidoCode, int gugunCode, BigDecimal latitude, BigDecimal longitude, String mlevel, String description,
 			String memberId) {
 		this.myAttractionId = myAttractionId;
 		this.contentId = contentId;
@@ -96,11 +98,11 @@ public class BookMarkResponse {
 		return gugunCode;
 	}
 
-	public double getLatitude() {
+	public BigDecimal getLatitude() {
 		return latitude;
 	}
 
-	public double getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
