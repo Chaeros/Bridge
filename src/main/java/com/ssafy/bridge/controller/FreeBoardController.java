@@ -9,6 +9,7 @@ import org.apache.tomcat.jakartaee.commons.lang3.math.NumberUtils;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardAddRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardModifyRequest;
 import com.ssafy.bridge.freeboard.dto.request.FreeBoardRemoveRequest;
+import com.ssafy.bridge.freeboard.service.FreeBoardAlgoServiceImpl;
 import com.ssafy.bridge.freeboard.service.FreeBoardService;
 import com.ssafy.bridge.freeboard.service.FreeBoardServiceImpl;
 import com.ssafy.bridge.member.dto.response.MemberLoginResponse;
@@ -25,6 +26,7 @@ import jakarta.servlet.http.HttpSession;
 public class FreeBoardController extends HttpServlet {
 
 	FreeBoardService freeBoardService = FreeBoardServiceImpl.getInstance();
+	FreeBoardAlgoServiceImpl freeBoardAlgoService = FreeBoardAlgoServiceImpl.getInstance();
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -54,6 +56,11 @@ public class FreeBoardController extends HttpServlet {
 			case "list":
 				listFreeBoard(request, response);
 				break;
+			case "hitList":
+				listHitFreeBoard(request, response);
+				break;
+			case "searchList":
+				listSearchFreeBoardByTitleAndContent(request, response);
 			case "detail":
 				detailFreeBoard(request, response);
 				break;
@@ -74,6 +81,32 @@ public class FreeBoardController extends HttpServlet {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pgno", NumberUtils.toInt(request.getParameter("pgno"), 1));
 		request.setAttribute("boards", freeBoardService.displayFreeBoardList(map));
+
+		PageNavigation pageNavigation = freeBoardService.makePageNavigation(map);
+		request.setAttribute("navigation", pageNavigation);
+
+		request.getRequestDispatcher("/freeboard/list.jsp").forward(request, response);
+	}
+
+	private void listHitFreeBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pgno", NumberUtils.toInt(request.getParameter("pgno"), 1));
+		request.setAttribute("boards", freeBoardAlgoService.displayFreeBoardListByHit(map));
+
+		PageNavigation pageNavigation = freeBoardService.makePageNavigation(map);
+		request.setAttribute("navigation", pageNavigation);
+
+		request.getRequestDispatcher("/freeboard/list.jsp").forward(request, response);
+	}
+
+	private void listSearchFreeBoardByTitleAndContent(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pgno", NumberUtils.toInt(request.getParameter("pgno"), 1));
+		map.put("find", request.getParameter("find"));
+		request.setAttribute("boards", freeBoardAlgoService.displayFreeBoardListByTitleAndContent(map));
 
 		PageNavigation pageNavigation = freeBoardService.makePageNavigation(map);
 		request.setAttribute("navigation", pageNavigation);

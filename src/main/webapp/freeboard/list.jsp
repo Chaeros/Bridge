@@ -33,10 +33,22 @@ nav a {
 	<jsp:include page="/header.jsp" />
 	<main>
 		<nav>
-			<h1>게시판<h1>
+			<h1>
+				게시판
+				<h1>
 		</nav>
-		<div class="link"><br> <a
+		<div class="link">
+			<br> <a
 				href="${pageContext.request.contextPath}/freeboard?action=addForm">등록하기</a>
+		</div>
+		<div>
+			<label for="find">작성자</label> 
+			<input type="text" id="find" name="find">
+			<button id="searchBtn" type="button">검색</button>
+		</div>
+		<div class="link">
+			<a href="${pageContext.request.contextPath}/freeboard?action=list">등록순</a>
+			<a href="${pageContext.request.contextPath}/freeboard?action=hitList">조회순</a>
 		</div>
 		<section>
 			<table>
@@ -66,5 +78,6 @@ nav a {
 		${navigation.navigator}
 	</main>
 	<jsp:include page="/footer.jsp" />
+	<script src="${pageContext.request.contextPath}/javascript/list.js"></script>
 </body>
 </html>

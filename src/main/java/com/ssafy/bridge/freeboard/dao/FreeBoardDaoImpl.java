@@ -66,6 +66,22 @@ public class FreeBoardDaoImpl implements FreeBoardDao {
 			return pstmt.executeUpdate();
 		}
 	}
+	
+	@Override
+	public int updateHit(int no) throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("update freeboard		");
+		sql.append("   set hit = hit + 1	");
+		sql.append(" where no = ?			");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+		
+		try (con; pstmt) {
+			int index = 0;
+			pstmt.setInt(++index, no);
+			return pstmt.executeUpdate();
+		}
+	}
 
 	@Override
 	public int deleteFreeBoard(FreeBoardRemoveRequest board) throws SQLException {
@@ -144,6 +160,25 @@ public class FreeBoardDaoImpl implements FreeBoardDao {
 			rs.next();
 			cnt = rs.getInt("cnt");
 			return cnt;
+		}
+	}
+
+	@Override
+	public List<FreeBoardResponse> selectFreeBoardList() throws SQLException {
+		Connection con = dbUtil.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("select *					");
+		sql.append("  from freeboard			");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+
+		try (con; pstmt) {
+			List<FreeBoardResponse> list = new ArrayList<>();
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new FreeBoardResponse(rs.getInt("no"), rs.getString("title"), rs.getString("content"),
+						rs.getString("writer"), rs.getInt("hit"), rs.getString("write_Date")));
+			}
+			return list;
 		}
 	}
 }
