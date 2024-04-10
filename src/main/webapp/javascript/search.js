@@ -147,6 +147,12 @@ function getAttractionList() {
 	console.log("dd");
 	console.log(keyword, areacode, sigunguCode, contentTypeId);
 	console.log(serverIp)
+	
+	if ( keyword == ""){
+		alert("검색어 키워드를 반드시 입력해주세요!");
+		return;
+	}
+	
 	fetch(serverIp+"/bridge/attractionInfo?action=list", {
 		method: 'POST', // 요청 메서드를 POST로 설정합니다.
 		headers: {

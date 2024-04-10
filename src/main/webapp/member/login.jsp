@@ -29,7 +29,7 @@
 						name="password" type="text" required />
 				</div>
 				<div>
-					<button id="login_btn" type="submit">로그인</button>
+					<button id="login_btn" type="login(id,password)">로그인</button>
 				</div>
 			</form>
 			<button id="signup_btn" type="button">회원가입</button>
